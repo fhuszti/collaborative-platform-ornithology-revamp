@@ -7,6 +7,6 @@ parameters:
     database_password: root
     mailer_transport: smtp
     mailer_host: email-smtp.us-west-2.amazonaws.com
-    mailer_user: AKIAJBHCFO5GNB5FIC2A
-    mailer_password: AqAlVBuHeUIcfoEvTpsmIL2SmE5dAeFJmGjGd/EqmXV4
+    mailer_user: AKIAJKASLSGC4ER4WBSQ
+    mailer_password: Aux5mjN0sDNgQv0DCBk72tj2OGOyhFK/WpuGhX5zGg45
     secret: 8960d61803ab75247b81503bf5f9a867c7d72210

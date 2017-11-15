@@ -86,6 +86,21 @@ core:
         login:
             title: Me connecter
             text: Connectez-vous afin d'accéder à toutes les fonctionnalités de la plateforme.
+    
+    project:
+        meta_title: Le projet
+        meta_description: Qui sommes-nous et quel est l'objectif de cette plateforme ? Les réponses ici !
+        
+
+    contact:
+        meta_title: Contact
+        meta_description: Retrouvez un formulaire et les informations nécessaires afin de contacter l'association Nos Amis les Oiseaux.
+        title: CONTACTEZ-NOUS
+        confirm: ENVOYER
+        address: |
+            ASSOCIATION NOS AMIS LES OISEAUX
+            156 BOULEVARD BONNE NOUVELLE
+            75 010 PARIS CEDEX
 
     find:
         input_find: Tapez le nom de l'oiseau
@@ -105,16 +120,6 @@ core:
             title: OBSERVATIONS
         photo:
             title: PHOTOS
-    
-    contact:
-        meta_title: Contact
-        meta_description: Retrouvez un formulaire et les informations nécessaires afin de contacter l'association Nos Amis les Oiseaux.
-        title: CONTACTEZ-NOUS
-        confirm: ENVOYER
-        address: |
-            ASSOCIATION NOS AMIS LES OISEAUX
-            156 BOULEVARD BONNE NOUVELLE
-            75 010 PARIS CEDEX
 
     admin:
         title: Administration

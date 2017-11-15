@@ -1,5 +1,16 @@
 {% form_theme emailForm 'form/form_errors.html.twig' %}
 
+{% for flashMessage in app.session.flashbag.get('error') %}
+    <div class="col-xs-12 alert alert-danger">
+        {{ flashMessage }}
+    </div>
+{% endfor %}
+{% for flashMessage in app.session.flashbag.get('success') %}
+    <div class="col-xs-12 alert alert-success">
+        {{ flashMessage }}
+    </div>
+{% endfor %}
+
 {{ form_start(emailForm, {
     'method': 'post',
     'attr': {

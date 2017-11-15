@@ -1,0 +1,57 @@
+{% extends 'layout.html.twig' %}
+{% set projectPage = true %}
+{% import "macros/_macroMetaTags.html.twig" as macroMetaTags %}
+
+{% set meta_title %}{{'core.project.meta_title'|trans}}{% endset %}
+
+{% set meta_description %}
+{{'core.project.meta_description'|trans}}
+{% endset %}
+
+{% set meta_url %}
+{{ url('core_project') }}
+{% endset %}
+
+{% block title %}
+    {{ meta_title }} - {{ parent() }}
+{% endblock %}
+
+{% block meta %}
+    {{ macroMetaTags.meta_tags(meta_title, meta_description, meta_url ) }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+    {% stylesheets filter='cssrewrite, ?scssphp'
+        'bundles/app/css/project.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body  %}
+<div class="col-xs-12 nao_title">
+	<div class="col-xs-10 col-sm-8 col-md-6">
+		<h1>{{'core.project.title'|trans}}</h1>
+	</div>
+
+	<div class="hidden-xs col-sm-2 nao_title-icon">
+		{% image 'http://assets.fhuszti.tech/nao/second-menu/project.png' %}
+			<img src="{{ asset_url }}" alt="" />
+		{% endimage %}
+	</div>
+</div>
+
+<div class="col-xs-12" id="project_form">
+	{% include 'core/project/blocks/form.html.twig' %}
+
+	<div class="col-xs-12 text-center" id="submitButtonDiv">
+        <button type="submit" form="projectForm" class="btn btn-info btn-lg">
+            {{ 'core.project.confirm'|trans }}
+        </button>
+    </div>
+</div>
+
+<div class="col-xs-12" id="project_infos">
+	{% include 'core/project/blocks/infos.html.twig' %}
+</div>
+{% endblock %}

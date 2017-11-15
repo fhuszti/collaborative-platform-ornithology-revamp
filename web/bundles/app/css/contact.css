@@ -12,6 +12,9 @@ body {
 	opacity: 0.90;
 	text-align: right;
 }
+#contact_form .alert {
+	text-align: left;
+}
 #contact_form .form-group {
 	margin-bottom: 30px;
 	padding: 0;

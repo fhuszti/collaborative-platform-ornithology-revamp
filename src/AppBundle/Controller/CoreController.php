@@ -5,13 +5,14 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use AppBundle\Service\Mailer\MailerNotificator;
+use AppBundle\Form\Type\ContactType;
 use AppBundle\Entity\Bird;
 use AppBundle\Entity\Observation;
 use AppBundle\Entity\Email;
-use AppBundle\Form\Type\ContactType;
-use AppBundle\Service\Mailer\MailerNotificator;
 
 class CoreController extends Controller
 {
@@ -26,18 +27,45 @@ class CoreController extends Controller
 
 
 
+    /**
+     * @Route("/projet", name="core_project")
+     * @Method("GET")
+     */
+    public function projectAction()
+    {
+        return $this->render('core/project/project.html.twig');
+    }
+
+
+
 	/**
      * @Route("/contact", name="core_contact")
      * @Method({"GET", "POST"})
      */
-    public function contactAction (MailerNotificator $mailer, Request $request)
+    public function contactAction (MailerNotificator $mailer, Request $request, SessionInterface $session)
     {
 		$email = new Email();
 
-		$emailForm = $this->createForm(ContactType::class, $email);
+		$form = $this->createForm(ContactType::class, $email);
+
+		$form->handleRequest($request);
+
+		if ( $form->isSubmitted() ) {
+			if ( $form->isValid() ) {
+	            $mailer->sendEmail($email, 'contact');
+
+	            $session->getFlashbag()->add('success', "Votre message nous a bien été envoyé. Nous vous répondrons dès que possible à l'adresse email fournie.");
+
+	            //prevent resubmission en page refresh and prevent form from being already filled on page load
+	            return $this->redirectToRoute('core_contact');
+	        }
+	        else {
+	            $session->getFlashbag()->add('error', "Erreur lors de l'envoi. Vérifiez que tous les champs soient bien valides avant d'envoyer le formulaire.");
+	        }
+	    }
 
         return $this->render('core/contact/contact.html.twig', array(
-        	'emailForm' => $emailForm->createView()
+        	'emailForm' => $form->createView()
         ));
     }
 

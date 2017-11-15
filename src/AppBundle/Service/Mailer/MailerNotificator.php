@@ -25,9 +25,9 @@ class MailerNotificator {
 	 */
 
 	//render an html template
-	public function renderTemplate($entity, $imgUrl, $admin) {
+	public function renderTemplate($entity, $imgUrl, $template) {
 		return $this->twig->render(
-			'email/confirmation.html.twig',
+			'email/'.$template.'.html.twig',
 			array(
 				'entity' => $entity,
 				'imgUrl' => $imgUrl
@@ -36,14 +36,14 @@ class MailerNotificator {
 	}
 
 	//send an email to the client containing his tickets
-	public function sendEmail(Email $entity) {
+	public function sendEmail(Email $entity, $template) {
 		$subject = $entity->getTitle();
 
 		$mail = \Swift_Message::newInstance();
 
 		$img = $mail->embed(\Swift_Image::fromPath('http://assets.fhuszti.tech/nao/logo.png'));
 		
-		$body = $this->renderTemplate($entity, $img);
+		$body = $this->renderTemplate($entity, $img, $template);
 		
 		$mail->setSubject($subject)
 			 ->setFrom('contact@fhuszti.tech')
