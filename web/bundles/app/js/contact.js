@@ -6,18 +6,17 @@ $(function() {
         else{
             field.parent().removeClass('has-success').addClass('has-error');
         }
-
-        console.log(valid);
     }
 
     function validateName(name) {
         var re = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,}$/;
-        console.log(re.test(name));
+
         return re.test(name);
     }
 
     function validateEmail(email) {
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        
         return re.test(email);
     }
 
@@ -35,7 +34,6 @@ $(function() {
             else {
                 colorBorders(inputObjects.name, false);
             }
-            console.log(inputObjects.name.val());
         });
 
         inputObjects.message.on('keyup', function() {
@@ -44,6 +42,15 @@ $(function() {
             }
             else {
                 colorBorders(inputObjects.message, false);
+            }
+        });
+
+        inputObjects.subject.on('keyup', function() {
+            if (validateName(inputObjects.subject.val())) {
+                colorBorders(inputObjects.subject, true);
+            }
+            else {
+                colorBorders(inputObjects.subject, false);
             }
         });
 
@@ -60,12 +67,14 @@ $(function() {
 
     function formManagement() {
         var inputObjects = {
-            'name': $('#contact_name'),
-            'email': $('#contact_email'),
-            'subject': $('#contact_subject'),
-            'message': $('#contact_message')
+            'name': $('#appbundle_email_name'),
+            'email': $('#appbundle_email_email'),
+            'subject': $('#appbundle_email_title'),
+            'message': $('#appbundle_email_content')
         };
+
         liveCheckInputs(inputObjects);
     }
+
     formManagement();
 });

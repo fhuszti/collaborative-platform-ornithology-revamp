@@ -4,110 +4,73 @@ body {
 	width: 100%;
 }
 
-#containerformContact {
+#contact_form {
 	margin-top: 45px;
-	padding: 30px;
+	padding: 30px 0;
 	font-size: 1.2em;
 	background-color: #CEE5C9;
-	opacity:0.90;
-	border: 0px;
-	min-height: 600px;
+	opacity: 0.90;
+	text-align: right;
 }
-#containerformContact label {
-	margin-left: 20%;
-	margin-top:3%;
-	font-size: 18px;
-	text-transform: uppercase;
+#contact_form .form-group {
+	margin-bottom: 30px;
+	padding: 0;
 }
-#containerformContact .form-group {
-	margin-bottom: 35px!important;
->>>>>>> find
+#contact_form label {
+	margin-top: 10px;
 }
-
-#f {
-	margin-top: 150px;
+#contact_form textarea {
+	min-height: 250px;
 }
 
-#blocAdress {
-	background-color: #EBEAE9;
-	min-height: 200px;
->>>>>>> find
-	margin-bottom: 150px;
-}
-
-.field {
-	margin-top: 50px;
-}
-
-input {
-	width: 100%;
-}
-
-#contact_message {
+#submitButtonDiv {
+	text-align: right;
+	padding-right: 45px;
+	position: relative;
 	height: 150px;
 }
-
-#save {
-	text-align: right;
->>>>>>> find
+#pelican {
+	position: absolute;
+	left: 10px;
+	top: -200px;
 }
 
-/*Bloc adresse*/
-#phoneNumber, #email {
-	height: 50px;
-	display: flex;
-	align-items: flex-end;
+#contact_infos {
+	background-color: rgb(255,255,255);
+	background-color: rgba(255,255,255,0.6);
+	padding-top: 30px;
+	padding-bottom: 15px;
 }
-
-p {
- 	margin-bottom: 0px;
-}
-
-#separatorLine {
-	display: flex;
-	justify-content: center;
-
-}
-#separatorLine img {
-
-	margin-top: 20px;
-	margin-bottom: 10px;
-}
->>>>>>> find
-#adress {
-	margin-top: 25px;
-	margin-bottom: 25px;
-}
-
-#textThanks {
-	background-color: #CEE5C9;
-	height: 0px;
-	margin-top:20%;
-	font-size: 20pt;
->>>>>>> find
-	flex-direction: column;
-	justify-content: center;
-}
-
-#textThanks p {
-	margin-bottom: 25px;
+#contact_infos .row {
+	text-align: center;
 }
 
 
-@media all and (max-width: 768px) {
-	#pelican {
-		height: 50px;
-	}
 
-	#blocAdress {
-		min-height: 300px;
-	}
-	#containerformContact label {
-	margin-left: 0;
-	margin-top:0;
-	}
-	#containerformContact .form-group {
-	margin-bottom: 15px!important;
+@media (max-width: 991px) {
+    #pelican {
+    	width: 240px;
+    	top: -120px;
+    }
 }
->>>>>>> find
+@media (max-width: 767px) {
+    #contact_form {
+    	text-align: left;
+    	padding-bottom: 45px;
+    }
+    #contact_form form {
+    	padding-left: 0;
+    	padding-right: 0; 
+    }
+    #contact_form textarea {
+    	min-height: 150px;
+    }
+
+    #submitButtonDiv {
+    	height: auto;
+    }
+
+    #contact_infos {
+    	text-align: center;
+    }
 }

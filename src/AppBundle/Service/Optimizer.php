@@ -2,7 +2,7 @@
 
 use AppBundle\Entity\Observation;
 
-namespace AppBundle\Services;
+namespace AppBundle\Service;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Tinypng\Bundle\EventListener;

@@ -63,6 +63,8 @@ core:
         logout: Se déconnecter
 
     home:
+        meta_title: Accueil
+        meta_description: Bienvenue sur la plateforme collaborative de Nos Amis les oiseaux !
         observation:
             title: J'ai observé un oiseau
             text: Vous pouvez partager ici l'endroit où vous l'avez vu, vos observations, ainsi que vos photos pour nous aider à avancer notre programme de recherche !
@@ -105,12 +107,14 @@ core:
             title: PHOTOS
     
     contact:
-        form:
-            name: Nom
-            mail: Email
-            subject: Objet
-            message: Message
-            send: Envoyer
+        meta_title: Contact
+        meta_description: Retrouvez un formulaire et les informations nécessaires afin de contacter l'association Nos Amis les Oiseaux.
+        title: CONTACTEZ-NOUS
+        confirm: ENVOYER
+        address: |
+            ASSOCIATION NOS AMIS LES OISEAUX
+            156 BOULEVARD BONNE NOUVELLE
+            75 010 PARIS CEDEX
 
     admin:
         title: Administration

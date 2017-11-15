@@ -1,0 +1,59 @@
+{% form_theme emailForm 'form/form_errors.html.twig' %}
+
+{{ form_start(emailForm, {
+    'method': 'post',
+    'attr': {
+        'id': 'contactForm',
+        'class': 'col-xs-12',
+        'role': 'form',
+        'data-action': path('core_contact')
+    }
+}) }}
+    {% if form_errors(emailForm.name) %}
+        {{ form_errors(emailForm.name) }}
+    {% endif %}
+    {% if form_errors(emailForm.email) %}
+        {{ form_errors(emailForm.email) }}
+    {% endif %}
+    {% if form_errors(emailForm.title) %}
+        {{ form_errors(emailForm.title) }}
+    {% endif %}
+    {% if form_errors(emailForm.content) %}
+        {{ form_errors(emailForm.content) }}
+    {% endif %}
+    {% if form_errors(emailForm) %}
+        {{ form_errors(emailForm) }}
+    {% endif %}
+
+    <div class="col-xs-12 form-group">
+        {{ form_label(emailForm.name) }}
+
+        <div class="col-xs-12 col-sm-7">
+            {{ form_widget(emailForm.name) }}
+        </div>
+    </div>
+
+    <div class="col-xs-12 form-group">
+        {{ form_label(emailForm.email) }}
+
+        <div class="col-xs-12 col-sm-7">
+            {{ form_widget(emailForm.email) }}
+        </div>
+    </div>
+
+    <div class="col-xs-12 form-group">
+        {{ form_label(emailForm.title) }}
+
+        <div class="col-xs-12 col-sm-7">
+            {{ form_widget(emailForm.title) }}
+        </div>
+    </div>
+
+    <div class="col-xs-12 form-group">
+        {{ form_label(emailForm.content) }}
+
+        <div class="col-xs-12 col-sm-7">
+            {{ form_widget(emailForm.content) }}
+        </div>
+    </div>
+{{ form_end(emailForm) }}
