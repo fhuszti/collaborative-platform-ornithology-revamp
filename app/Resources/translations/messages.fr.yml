@@ -30,33 +30,6 @@ core:
             link: Se déconnecter
             value: Déconnexion
 
-    find:
-        input_find: Tapez le nom de l'oiseau
-        button_find: Rechercher
-        msg:
-            nofind: Aucuns résultats ne correspond à cette recherche
-            error: Une erreur est survenue, veuillez réessayer
-    
-    bird:
-        desc:
-            family: Famille
-            rang: Rang
-            name_latin: Nom latin
-            full_name: Nom complet
-            common_name: Nom(s) Commun(s)
-        observation:
-            title: OBSERVATIONS
-        photo:
-            title: PHOTOS
-    second-menu:
-        observation: Laisser une observation
-        search: Rechercher un oiseau
-        contact: Nous contacter
-        register: S'inscrire
-        profile: Voir son profil
-        login: Se connecter
-        logout: Se déconnecter
-
     footer:
         left_links:
             search:
@@ -79,14 +52,7 @@ core:
             agency:
                 link: WebAgency
                 title: Agence WebAgency
-    contact:
-        form:
-            name: Nom
-            mail: Email
-            subject: Objet
-            message: Message
-            send: Envoyer
-
+    
     second-menu:
         observation: Laisser une observation
         search: Rechercher un oiseau
@@ -97,28 +63,54 @@ core:
         logout: Se déconnecter
 
     home:
-        block_obs:
+        observation:
             title: J'ai observé un oiseau
             text: Vous pouvez partager ici l'endroit où vous l'avez vu, vos observations, ainsi que vos photos pour nous aider à avancer notre programme de recherche !
-        block_project:
+        project:
             title: Le projet
             text: La présentation en détails de notre projet. Pour qui ? Où ? Pourquoi ? Comment participer ?
-        block_search:
+        search:
             title: Quel est cet oiseau ?
             text: Vous recherchez des informations sur un oiseau ? Notre base de donnée est par ici !
-        block_contact:
+        contact:
             title: Nous contacter
             text: Vous avez besoin d'infos, vous avez des remarques ou tout simplement envie d'échanger ? N'hésitez pas à nous contacter !
-        block_profile:
+        profile:
             title: Mon Espace
             text: Retrouvez vos informations, ainsi que toutes vos observations et photos. C'est ici que vous pouvez changer votre adresse email et votre mot de passe.
-        block_register:
+        register:
             title: M'inscrire
             text: Rejoignez-nous en deux clics et participez à notre plateforme collaborative !
-        block_login:
+        login:
             title: Me connecter
             text: Connectez-vous afin d'accéder à toutes les fonctionnalités de la plateforme.
-        p5: Retrouvez toutes vos informations, l'historique de vos observations, vos photos, et vos oiseaux favoris
+
+    find:
+        input_find: Tapez le nom de l'oiseau
+        button_find: Rechercher
+        msg:
+            nofind: Aucuns résultats ne correspond à cette recherche
+            error: Une erreur est survenue, veuillez réessayer
+    
+    bird:
+        desc:
+            family: Famille
+            rang: Rang
+            name_latin: Nom latin
+            full_name: Nom complet
+            common_name: Nom(s) Commun(s)
+        observation:
+            title: OBSERVATIONS
+        photo:
+            title: PHOTOS
+    
+    contact:
+        form:
+            name: Nom
+            mail: Email
+            subject: Objet
+            message: Message
+            send: Envoyer
 
     admin:
         title: Administration

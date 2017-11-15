@@ -25,7 +25,7 @@ class CoreController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('core/index.html.twig');
+        return $this->render('core/home/index.html.twig');
     }
 
     /**

@@ -69,7 +69,8 @@ a {
     background-color: #318CE7;
     font-size: 20pt;
     font-family: 'OpenSans Regular';
- }
+}
+
 .btn-loading {
     animation: spin 2s linear infinite;
 }

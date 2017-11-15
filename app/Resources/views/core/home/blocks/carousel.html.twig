@@ -1,0 +1,38 @@
+<ol class="carousel-indicators">
+    <li data-target="#carousel" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel" data-slide-to="1"></li>
+    <li data-target="#carousel" data-slide-to="2"></li>
+</ol>
+
+<div class="carousel-inner">
+    <div class="item active">
+	    <a href="{{ path('core_home') }}" title="{{ 'core.header.observation.link'|trans }}">
+            {% image 'http://assets.fhuszti.tech/nao/home/slide-observation.png' %}
+                <img src="{{ asset_url }}" alt="{{'core.header.observation.link'|trans}}" />
+            {% endimage %}
+        </a>
+    </div>
+
+    <div class="item">
+    	<a href="{{ path('core_home') }}" title="{{ 'core.header.search.link'|trans }}">
+            {% image 'http://assets.fhuszti.tech/nao/home/slide-search.png' %}
+                <img src="{{ asset_url }}" alt="{{'core.header.search.link'|trans}}" />
+            {% endimage %}
+        </a>
+    </div>
+    
+    <div class="item">
+    	<a href="{{ path('core_home') }}" title="{{ 'core.header.project.link'|trans }}">
+            {% image 'http://assets.fhuszti.tech/nao/home/slide-project.png' %}
+                <img src="{{ asset_url }}" alt="{{'core.header.project.link'|trans}}" />
+            {% endimage %}
+        </a>
+    </div>
+</div>
+
+<a class="left carousel-control" href="#carousel" data-slide="prev">
+	<span class="glyphicon glyphicon-chevron-left"></span>
+</a>
+<a class="right carousel-control" href="#carousel" data-slide="next">
+	<span class="glyphicon glyphicon-chevron-right"></span>
+</a>
