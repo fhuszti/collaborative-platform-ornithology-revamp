@@ -1,5 +1,0 @@
-_assetic:
-    resource: .
-    type: assetic
-_app:
-    resource: /Users/Durden/Documents/activites_oc/projet5/nao-revamp/app/config/routing_dev.yml
