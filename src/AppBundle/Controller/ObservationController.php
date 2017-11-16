@@ -24,7 +24,7 @@ use Doctrine\ORM\EntityManagerInterface;
 class ObservationController extends Controller
 {
     /**
-     * @Route("/observation", name="app_observation")
+     * @Route("/observation", name="core_observation")
 	 * @Method({"GET", "POST"})
      */
     public function formAction(Request $request, Optimizer $optimizer)

@@ -32,12 +32,12 @@
             <!-- actual menu list -->
             <ul class="nav navbar-nav navbar-right">
                 <li{% if projectPage is defined %} class="active"{% endif %}>
-                    <a href="{{ path('core_home') }}" title="{{ 'core.header.project.link'|trans }}">
+                    <a href="{{ path('core_project') }}" title="{{ 'core.header.project.link'|trans }}">
                         {{ 'core.header.project.value'|trans|upper }}
                     </a>
                 </li>
                 <li{% if observationPage is defined %} class="active"{% endif %}>
-                    <a href="{{ path('core_home') }}" title="{{ 'core.header.observation.link'|trans }}">
+                    <a href="{{ path('core_observation') }}" title="{{ 'core.header.observation.link'|trans }}">
                         {{ 'core.header.observation.value'|trans|upper }}
                     </a>
                 </li>

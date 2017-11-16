@@ -1,0 +1,25 @@
+body {
+	background-image: url( "http://assets.fhuszti.tech/nao/project/project-bg.png" );
+	background-size: cover;
+  	background-position: center center;
+  	background-repeat: no-repeat;
+}
+
+#project_content {
+	margin-top: 45px;
+	background-color: rgb(255,255,255);
+	background-color: rgba(255,255,255, 0.7);
+	border: 1px outset #eee;
+	padding-top: 40px;
+	padding-bottom: 45px;
+}
+#project_content .separator-angle {
+	float: right;
+}
+#project_content p {
+	margin-top: 40px;
+	margin-bottom: 30px;
+}
+#project_content a {
+	margin-bottom: 30px;
+}

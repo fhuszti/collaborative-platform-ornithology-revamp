@@ -90,7 +90,41 @@ core:
     project:
         meta_title: Le projet
         meta_description: Qui sommes-nous et quel est l'objectif de cette plateforme ? Les réponses ici !
-        
+        title: LE PROJET
+        presentation:
+            title: PRÉSENTATION
+            content: |
+                Nos Amis les Oiseaux lance un projet de recherche et de partage de données sur les oiseaux qui collectera les observations, photos et localisation des oiseaux observés par les participants.
+
+                Ces informations serviront à un programme de recherche visant à étudier les effets du climat, de l'urbanisation et de l'agriculture sur la bio-diversité.
+
+                Cette plateforme existe afin que vous, utilisateurs, puissiez rentrer vos observations faites sur le terrain, mais propose aussi des informations sur des centaines d'espèces d'oiseaux via sa grande banque de données.
+        whom:
+            title: POUR QUI ?
+            content: |
+                Ce projet s'adresse à tous celles et ceux qui souhaitent y participer, qu'ils soient professionnels ou amateurs, ainsi qu'à tous ceux qui souhaitent se renseigner sur les oiseaux qui les entourent.
+
+                Pour participer, une simple inscription suffit, alors n'hésitez pas à nous rejoindre !
+            btn:
+                profile:
+                    value: VOIR MON COMPTE
+                    title: Aller à votre page de profil
+                register:
+                    value: CRÉER MON COMPTE
+                    title: Accéder à la page d'inscription
+        how:
+            title: COMMENT PARTICIPER ?
+            content: |
+                C'est simple ! Vous observez un oiseau, puis vous rentrez la ou les photos prise(s), vos observations et la localisation exacte de façon aisée via votre ordinateur ou votre smartphone sur la page d'Observation de ce site.
+
+                Des professionnels valideront les informations rentrées, puis l'observation apparaîtra sur la fiche de l'oiseau concerné.
+                Vous pouvez ensuite retrouver l'historique de vos observations sur votre page de Profil dédiée.
+
+                Lancez-vous !
+            btn:
+                observation:
+                    value: PARTAGER UNE OBSERVATION
+                    title: Accédez à la page d'Observation
 
     contact:
         meta_title: Contact
