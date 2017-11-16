@@ -16,11 +16,6 @@ admin:
     type:     annotation
     prefix:   /admin
 
-observation:
-    resource: "@AppBundle/Controller/ObservationController.php"
-    type:     annotation
-    prefix:   /admin/obs
-
 user:
     resource: "@UserBundle/Controller/UserController.php"
     type:     annotation

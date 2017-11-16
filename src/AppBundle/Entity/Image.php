@@ -3,7 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Entity\Observation;
 
 /**
  * Image
@@ -25,45 +26,49 @@ class Image
     /**
      * @var string
      *
-     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     * @ORM\Column(name="name", type="string", length=255)
+     *
+     * @Assert\Length(
+     *     min=1,
+     *     max=255,
+     *     minMessage="Le nom de l'image doit contenir plus de 1 caractère.",
+     *     maxMessage="Le nom de l'image ne peut contenir plus de 255 caractères."
+     * )
      */
-    private $image;
+    private $fileName;
 
-     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Observation",inversedBy="image")
-     * @ORM\JoinColumn(nullable=true)
+    /**
+     * @Assert\File(mimeTypes={ "image/jpeg", "image/png" })
+     */
+    private $file;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alt", type="string", length=255)
+     *
+     * @Assert\Type(
+     *     type="string",
+     *     message="La légende de l'image doit être une chaîne de caractères valide."
+     * )
+     * @Assert\Length(
+     *     min=1,
+     *     max=255,
+     *     minMessage="La légende de l'image doit contenir plus de 1 caractère.",
+     *     maxMessage="La légende de l'image ne peut contenir plus de 255 caractères."
+     * )
+     */
+    private $alt;
+
+    /**
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Observation", inversedBy="image")
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
      */
     private $observation;
 
-    /**
-     * @var 
-     *
-     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="images", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $user;
 
-    private $file;
-
-    const PATH = '%kernel.project_dir%/web/uploads/images';
-
-    public function upload()
-    {   
-        $name = md5(uniqid()).'.'.$this->file->getClientOriginalName();
-        $this->file->move(self::PATH, $name);
-        $this->image = $name;
-        return;
-    }
-
-    public function getFile()
-    {
-    return $this->file;
-    }
-
-    public function setFile(UploadedFile $file = null)
-    {
-    $this->file = $file;
-    }
 
     /**
      * Get id
@@ -76,27 +81,75 @@ class Image
     }
 
     /**
-     * Set image
+     * Set fileName
      *
-     * @param string $image
+     * @param string $fileName
      *
      * @return Image
      */
-    public function setImage($image)
+    public function setFileName($fileName)
     {
-        $this->image = $image;
+        $this->fileName = $fileName;
 
         return $this;
     }
 
     /**
-     * Get image
+     * Get fileName
      *
      * @return string
      */
-    public function getImage()
+    public function getFileName()
     {
-        return $this->image;
+        return $this->fileName;
+    }
+
+    /**
+     * Set file
+     *
+     * @param $file
+     *
+     * @return Image
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+    /**
+     * Get file
+     *
+     * @return string
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * Set alt
+     *
+     * @param string $alt
+     *
+     * @return Image
+     */
+    public function setAlt($alt)
+    {
+        $this->alt = $alt;
+
+        return $this;
+    }
+
+    /**
+     * Get alt
+     *
+     * @return string
+     */
+    public function getAlt()
+    {
+        return $this->alt;
     }
 
     /**
@@ -106,9 +159,9 @@ class Image
      *
      * @return Image
      */
-    public function setObservation(\AppBundle\Entity\Observation $observation)
+    public function setObservation(Observation $observation)
     {
-        $this->Observation = $observation;
+        $this->observation = $observation;
 
         return $this;
     }
@@ -120,6 +173,6 @@ class Image
      */
     public function getObservation()
     {
-        return $this->Observation;
+        return $this->observation;
     }
 }

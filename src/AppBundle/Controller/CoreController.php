@@ -38,6 +38,17 @@ class CoreController extends Controller
 
 
 
+    /**
+     * @Route("/observation", name="core_observation")
+	 * @Method({"GET", "POST"})
+     */
+    public function observationAction()
+    {
+		return $this->render('core/observation/observation.html.twig');
+    }
+
+
+
 	/**
      * @Route("/contact", name="core_contact")
      * @Method({"GET", "POST"})

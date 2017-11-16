@@ -126,6 +126,11 @@ core:
                     value: PARTAGER UNE OBSERVATION
                     title: Accédez à la page d'Observation
 
+    observation:
+        meta_title: Observation
+        meta_description: Ajoutez les informations récoltées en observant un oiseau dans la nature et participez au programme de recherche.
+        title: OBSERVATION
+
     contact:
         meta_title: Contact
         meta_description: Retrouvez un formulaire et les informations nécessaires afin de contacter l'association Nos Amis les Oiseaux.
@@ -188,11 +193,6 @@ core:
             title: Réinitialiser son mot de passe
             content: Nous allons vous envoyer un email afin de confirmer votre identité, puis vous pourrez créer un nouveau mot de passe.
             button: Valider
-
-    observation:
-        locationTitle: LOCALITE * Déplacer le marqueur sur la carte pour localiser le lieu de l'observation
-        buttonGeolocation: me geolocaliser
-        buttonMap: localiser sur une carte
 
     reset_pass:
         email:

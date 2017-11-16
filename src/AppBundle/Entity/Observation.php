@@ -1,7 +1,12 @@
 <?php
 namespace AppBundle\Entity;
+
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use UserBundle\Entity\User;
+use AppBundle\Entity\Image;
+use AppBundle\Entity\Bird;
+
 /**
  * Observation
  *
@@ -34,13 +39,6 @@ class Observation
     private $lattitude;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="country",  type="string", length=255)
-     */
-    private $country;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="date")
@@ -49,23 +47,26 @@ class Observation
 
     /**
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", inversedBy="observation", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Bird", inversedBy="observation", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
+     */
+    private $bird;
+
+    /**
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", inversedBy="observation", cascade={"persist", "remove"})
+     * @Assert\Valid()
      */
     private $image;
 
     /**
      *
-     * @ORM\Column(name="bird_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="observation", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
      */
-    private $birdId;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="birdName", type="string", length=255)
-     */
-    private $birdName;
+    private $user;
 
     /**
      * @var string
@@ -77,21 +78,16 @@ class Observation
     /**
      * @var string
      *
-     * @ORM\Column(name="seen", type="boolean")
-     */
-    private $seen;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="status", type="boolean", nullable=true)
      */
     private $status;
-      
+
+
+
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -99,12 +95,16 @@ class Observation
     }
 
     /**
+     * Set longitude
+     *
+     * @param string $longitude
      *
      * @return Observation
      */
     public function setLongitude($longitude)
     {
         $this->longitude = $longitude;
+
         return $this;
     }
 
@@ -119,7 +119,7 @@ class Observation
     }
 
     /**
-     * Set lattiude
+     * Set lattitude
      *
      * @param string $lattitude
      *
@@ -128,41 +128,18 @@ class Observation
     public function setLattitude($lattitude)
     {
         $this->lattitude = $lattitude;
+
         return $this;
     }
 
     /**
-     * Get lattiude
+     * Get lattitude
      *
      * @return string
      */
     public function getLattitude()
     {
         return $this->lattitude;
-    }
-
-    /**
-     * Set country
-     *
-     * @param string $country
-     *
-     * @return Observation
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Get country
-     *
-     * @return string
-     */
-    public function getCountry()
-    {
-        return $this->country;
     }
 
     /**
@@ -175,8 +152,10 @@ class Observation
     public function setDate($date)
     {
         $this->date = $date;
+
         return $this;
     }
+
     /**
      * Get date
      *
@@ -186,6 +165,7 @@ class Observation
     {
         return $this->date;
     }
+
     /**
      * Set comment
      *
@@ -196,6 +176,7 @@ class Observation
     public function setComment($comment)
     {
         $this->comment = $comment;
+
         return $this;
     }
 
@@ -209,50 +190,22 @@ class Observation
         return $this->comment;
     }
 
-    public function setImage($file)
-    {
-        $this->image = $file;
-    }
-    
-    public function getImage()
-    {
-        return $this->image;
-    }
     /**
-     * Set seen
+     * Set status
      *
-     * @param boolean $seen
-     *
-     * @return Observation
-     */
-    public function setSeen($seen)
-    {
-        $this->seen = $seen;
-        return $this;
-    }
-    /**
-     * Get seen
-     *
-     * @return boolean
-     */
-    public function getSeen()
-    {
-        return $this->seen;
-    }
-    /**
-     * Set satus
-     *
-     * @param boolean $satus
+     * @param boolean $status
      *
      * @return Observation
      */
     public function setStatus($status)
     {
         $this->status = $status;
+
         return $this;
     }
+
     /**
-     * Get satus
+     * Get status
      *
      * @return boolean
      */
@@ -262,50 +215,81 @@ class Observation
     }
 
     /**
-     * Set birdName
+     * Set bird
      *
-     * @param string $birdName
+     * @param \AppBundle\Entity\Bird $bird
      *
      * @return Observation
      */
-    public function setBirdName($birdName)
+    public function setBird(Bird $bird)
     {
-        $this->birdName = $birdName;
+        $this->bird = $bird;
+
+        $bird->addObservation($this);
 
         return $this;
     }
 
     /**
-     * Get birdName
+     * Get bird
      *
-     * @return string
+     * @return \AppBundle\Entity\Bird
      */
-    public function getBirdName()
+    public function getBird()
     {
-        return $this->birdName;
+        return $this->bird;
     }
 
     /**
-     * Set birdId
+     * Set image
      *
-     * @param integer $birdId
+     * @param \AppBundle\Entity\Image $image
      *
      * @return Observation
      */
-    public function setBirdId($birdId)
+    public function setImage(Image $image = null)
     {
-        $this->birdId = $birdId;
+        $this->image = $image;
+
+        if ( !is_null($image) )
+            $image->setObservation($this);
 
         return $this;
     }
 
     /**
-     * Get birdId
+     * Get image
      *
-     * @return integer
+     * @return \AppBundle\Entity\Image
      */
-    public function getBirdId()
+    public function getImage()
     {
-        return $this->birdId;
+        return $this->image;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \UserBundle\Entity\User $user
+     *
+     * @return Observation
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+
+        $user->addObservation($this);
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

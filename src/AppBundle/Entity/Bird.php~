@@ -1,7 +1,11 @@
 <?php
 namespace AppBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Entity\Observation;
+
 /**
  * Bird
  *
@@ -18,50 +22,71 @@ class Bird
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
     /**
      * @var string
      *
      * @ORM\Column(name="family", type="string", length=255)
      */
     private $family;
+
     /**
      * @var string
      *
      * @ORM\Column(name="rank", type="string", length=255)
      */
     private $rank;
+
     /**
      * @var string
      *
      * @ORM\Column(name="latinName", type="string", length=255)
      */
     private $latinName;
+
     /**
      * @var string
      *
      * @ORM\Column(name="fullName", type="string", length=255)
      */
     private $fullName;
+
     /**
      * @var string
      *
      * @ORM\Column(name="commonName", type="string", length=255)
      */
     private $commonName;
+
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Observation", mappedBy="bird", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Observation", mappedBy="bird", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
      * @Assert\Valid()
      */
     private $observations;
+
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->observations = new ArrayCollection();
+    }
+
+
+
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
+
     /**
      * Set family
      *
@@ -72,8 +97,10 @@ class Bird
     public function setFamily($family)
     {
         $this->family = $family;
+
         return $this;
     }
+
     /**
      * Get family
      *
@@ -83,6 +110,7 @@ class Bird
     {
         return $this->family;
     }
+
     /**
      * Set rank
      *
@@ -93,8 +121,10 @@ class Bird
     public function setRank($rank)
     {
         $this->rank = $rank;
+
         return $this;
     }
+
     /**
      * Get rank
      *
@@ -104,6 +134,7 @@ class Bird
     {
         return $this->rank;
     }
+
     /**
      * Set latinName
      *
@@ -114,8 +145,10 @@ class Bird
     public function setLatinName($latinName)
     {
         $this->latinName = $latinName;
+
         return $this;
     }
+
     /**
      * Get latinName
      *
@@ -125,6 +158,7 @@ class Bird
     {
         return $this->latinName;
     }
+
     /**
      * Set fullName
      *
@@ -135,8 +169,10 @@ class Bird
     public function setFullName($fullName)
     {
         $this->fullName = $fullName;
+
         return $this;
     }
+
     /**
      * Get fullName
      *
@@ -146,6 +182,7 @@ class Bird
     {
         return $this->fullName;
     }
+
     /**
      * Set commonName
      *
@@ -156,8 +193,10 @@ class Bird
     public function setCommonName($commonName)
     {
         $this->commonName = $commonName;
+
         return $this;
     }
+
     /**
      * Get commonName
      *
@@ -167,13 +206,7 @@ class Bird
     {
         return $this->commonName;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->observations = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+
     /**
      * Add observation
      *
@@ -181,20 +214,23 @@ class Bird
      *
      * @return Bird
      */
-    public function addObservation(\AppBundle\Entity\Observation $observation)
+    public function addObservation(Observation $observation)
     {
         $this->observations[] = $observation;
+
         return $this;
     }
+
     /**
      * Remove observation
      *
      * @param \AppBundle\Entity\Observation $observation
      */
-    public function removeObservation(\AppBundle\Entity\Observation $observation)
+    public function removeObservation(Observation $observation)
     {
         $this->observations->removeElement($observation);
     }
+
     /**
      * Get observations
      *
