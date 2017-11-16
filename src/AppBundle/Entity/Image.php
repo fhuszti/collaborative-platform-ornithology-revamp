@@ -43,24 +43,6 @@ class Image
     private $file;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="alt", type="string", length=255)
-     *
-     * @Assert\Type(
-     *     type="string",
-     *     message="La légende de l'image doit être une chaîne de caractères valide."
-     * )
-     * @Assert\Length(
-     *     min=1,
-     *     max=255,
-     *     minMessage="La légende de l'image doit contenir plus de 1 caractère.",
-     *     maxMessage="La légende de l'image ne peut contenir plus de 255 caractères."
-     * )
-     */
-    private $alt;
-
-    /**
      *
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Observation", inversedBy="image")
      * @ORM\JoinColumn(nullable=false)
@@ -126,30 +108,6 @@ class Image
     public function getFile()
     {
         return $this->file;
-    }
-
-    /**
-     * Set alt
-     *
-     * @param string $alt
-     *
-     * @return Image
-     */
-    public function setAlt($alt)
-    {
-        $this->alt = $alt;
-
-        return $this;
-    }
-
-    /**
-     * Get alt
-     *
-     * @return string
-     */
-    public function getAlt()
-    {
-        return $this->alt;
     }
 
     /**
