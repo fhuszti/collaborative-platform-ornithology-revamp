@@ -1,0 +1,23 @@
+<div class="col-xs-12 nao_title">
+	<div class="col-xs-10 col-sm-6">
+		<h1>{{ 'core.login.title'|trans|upper }}</h1>
+	</div>
+
+	<div class="hidden-xs col-sm-2 nao_title-icon">
+	{% image 'http://fhuszti.com.s3.amazonaws.com/nao/second-menu/login.png' %}
+			<img src="{{ asset_url }}" alt="{{ 'core.second-menu.login'|trans }}" />
+		{% endimage %}
+	</div>
+</div>
+
+<div class="col-xs-12" id="login_content">
+	<p id="login_reset-confirm">
+		{{ 'core.reset_pass.check_email'|trans|nl2br }}
+	</p>
+
+	<p id="login_reset-back">
+		<a href="{{ path('fos_user_security_login') }}" title="{{ 'core.reset_pass.back'|trans }}">
+			<span class="glyphicon glyphicon-chevron-left"></span> {{ 'core.reset_pass.back'|trans }}
+		</a>
+	</p>
+</div>

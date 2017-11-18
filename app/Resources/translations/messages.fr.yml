@@ -175,6 +175,8 @@ core:
         congrats: Vous êtes désormais inscrit à la plateforme collaborative mise en place par Nos Amis les Oiseaux !
 
     login:
+        meta_title: Connexion
+        meta_description: Connectez-vous et participez au programme de recherche orchestré par Nos Amis les Oiseaux.
         title: Connexion
         register_button: Créer un compte
         email:
@@ -206,7 +208,8 @@ core:
         check_email: |
             Un e-mail a été envoyé. Il contient un lien sur lequel il vous faudra cliquer pour réinitialiser votre mot de passe.
 
-            Si vous ne recevez pas un email, vérifiez votre dossier spam ou essayez à nouveau.
+            Si vous ne recevez pas d'email, vérifiez votre dossier spam ou essayez à nouveau.
+        back: Retour à la page de Connexion
 
     profile:
         title: Mon Espace
