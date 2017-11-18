@@ -41,7 +41,7 @@ core:
             project:
                 link: Participer au projet
                 title: Participer au projet
-        copyright: © 2017 nosamislesoiseaux.fr
+        copyright: nosamislesoiseaux.fr
         right_links:
             legal:
                 link: Mentions légales
@@ -130,6 +130,13 @@ core:
         meta_title: Observation
         meta_description: Ajoutez les informations récoltées en observant un oiseau dans la nature et participez au programme de recherche.
         title: OBSERVATION
+        localisation:
+            label: LOCALISATION
+            helper: |
+                Placez le marqueur sur la carte afin de localiser le lieu de l'observation.
+                Si votre acceptez (ou avez déjà accepté par le passé) la géolocalisation Google, le marqueur sera automatiquement placé sur votre position actuelle.
+                Dans le cas contraire, le marqueur sera placé au centre de la France par défaut.
+        confirm: SOUMETTRE
 
     contact:
         meta_title: Contact

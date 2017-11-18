@@ -1,5 +1,5 @@
 body {
-	background-image: url( "http://assets.fhuszti.tech/nao/observations/observations-bg2.png" );
+	background-image: url( "http://fhuszti.com.s3.amazonaws.com/nao/observations/observations-bg2.png" );
 	background-size: cover;
   	background-position: center center;
   	background-repeat: no-repeat;
@@ -11,8 +11,40 @@ body {
 	background-color: rgba(255,255,255, 0.7);
 	border: 1px outset #eee;
 	padding-top: 40px;
+	font-size: 1.2em;
 	padding-bottom: 45px;
-	height: 50px;
+}
+#observation_content .separator-angle {
+	float: right;
+}
+#observation_content .margin-top-element {
+	margin-top: 5px;
+}
+#observation_localisation-helper {
+	font-size: 0.8em;
+}
+
+#gmaps_canvas {
+	height: 450px;
+	margin-bottom: 40px;
+}
+
+#observation_confirmButtonDiv {
+	text-align: center;
+}
+#observation_confirmButtonDiv button {
+	margin-top: 40px;
 }
 
 
+
+@media (max-width: 991px) {
+    #gmaps_canvas {
+    	height: 370px;
+    }
+}
+@media (max-width: 767px) {
+    #gmaps_canvas {
+    	height: 300px;
+    }
+}

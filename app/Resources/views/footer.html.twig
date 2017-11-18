@@ -15,7 +15,7 @@
 
 	<div class="hidden-xs col-sm-2" id="footer_logo">
 		<a href="{{ path('core_home') }}" title="{{ 'core.site.logo'|trans }}">
-			{% image 'http://assets.fhuszti.tech/nao/logo.png' %}
+			{% image 'http://fhuszti.com.s3.amazonaws.com/nao/logo.png' %}
 	        	<img src="{{ asset_url }}" alt="{{ 'core.site.logo'|trans }}" />
 	        {% endimage %}
         </a>
@@ -23,7 +23,7 @@
 
 	<div class="col-xs-12 col-sm-pull-7 col-sm-5">
 		<div class="hidden-xs col-sm-12" id="footer_left-links">
-			<a href="{{ path('core_home') }}" title="{{ 'core.footer.left_links.search.title'|trans }}">
+			<a href="{{ path('core_search') }}" title="{{ 'core.footer.left_links.search.title'|trans }}">
 		      	{{ 'core.footer.left_links.search.link'|trans|upper }}
 		    </a>
 		    <br />
@@ -37,7 +37,7 @@
 		</div>
 
 		<div class="col-xs-12" id="footer_copyright">
-			{{ 'core.footer.copyright'|trans }}
+			© {{ 'now'|date('Y') }} {{ 'core.footer.copyright'|trans }}
 		</div>
 	</div>
 </footer>

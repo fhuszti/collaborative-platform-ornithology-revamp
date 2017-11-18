@@ -41,7 +41,7 @@ class MailerNotificator {
 
 		$mail = \Swift_Message::newInstance();
 
-		$img = $mail->embed(\Swift_Image::fromPath('http://assets.fhuszti.tech/nao/logo.png'));
+		$img = $mail->embed(\Swift_Image::fromPath('http://fhuszti.com.s3.amazonaws.com/nao/logo.png'));
 		
 		$body = $this->renderTemplate($entity, $img, $template);
 		

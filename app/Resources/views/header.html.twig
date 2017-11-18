@@ -2,20 +2,20 @@
     <div class="navbar-header" id="header_images">
         <div id="logo" class="col-xs-12 col-sm-3">
             <a href="{{ path('core_home') }}" title="{{ 'core.site.logo'|trans }}" class="navbar-brand">
-                {% image 'http://assets.fhuszti.tech/nao/logo.png' %}
+                {% image 'http://fhuszti.com.s3.amazonaws.com/nao/logo.png' %}
                     <img src="{{ asset_url }}" alt="{{'core.site.logo'|trans}}" />
                 {% endimage %}
             </a>
         </div>
 
         <div id="header_middle-text" class="hidden-xs col-sm-4 col-sm-push-1">
-            {% image 'http://assets.fhuszti.tech/nao/header/header-middle-text.png' %}
+            {% image 'http://fhuszti.com.s3.amazonaws.com/nao/header/header-middle-text.png' %}
                 <img src="{{ asset_url }}" alt="{{'core.site.logo'|trans}}" />
             {% endimage %}
         </div>
 
         <div id="header_birds-text" class="hidden-xs col-sm-4 col-sm-push-1">
-            {% image 'http://assets.fhuszti.tech/nao/header/header-birds-text.png' %}
+            {% image 'http://fhuszti.com.s3.amazonaws.com/nao/header/header-birds-text.png' %}
                 <img src="{{ asset_url }}" alt="{{'core.site.logo'|trans}}" />
             {% endimage %}
         </div>
@@ -42,7 +42,7 @@
                     </a>
                 </li>
                 <li{% if searchPage is defined %} class="active"{% endif %}>
-                    <a href="{{ path('find') }}" title="{{ 'core.header.search.link'|trans }}">
+                    <a href="{{ path('core_search') }}" title="{{ 'core.header.search.link'|trans }}">
                         {{ 'core.header.search.value'|trans|upper }}
                     </a>
                 </li>

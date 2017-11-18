@@ -26,37 +26,233 @@ class Bird
     /**
      * @var string
      *
-     * @ORM\Column(name="family", type="string", length=255)
+     * @ORM\Column(name="regne", type="string", length=255)
      */
-    private $family;
+    private $regne;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="rank", type="string", length=255)
+     * @ORM\Column(name="phylum", type="string", length=255)
      */
-    private $rank;
+    private $phylum;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="latinName", type="string", length=255)
+     * @ORM\Column(name="classe", type="string", length=255)
      */
-    private $latinName;
+    private $classe;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="fullName", type="string", length=255)
+     * @ORM\Column(name="ordre", type="string", length=255)
      */
-    private $fullName;
+    private $ordre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="commonName", type="string", length=255)
+     * @ORM\Column(name="famille", type="string", length=255)
      */
-    private $commonName;
+    private $famille;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cd_nom", type="integer")
+     */
+    private $cd_nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cd_taxsup", type="integer")
+     */
+    private $cd_taxsup;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cd_ref", type="integer")
+     */
+    private $cd_ref;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rang", type="string", length=255)
+     */
+    private $rang;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lb_nom", type="string", length=255)
+     */
+    private $lb_nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lb_auteur", type="string", length=255, nullable=true)
+     */
+    private $lb_auteur;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom_complet", type="string", length=255)
+     */
+    private $nom_complet;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom_valide", type="string", length=255)
+     */
+    private $nom_valide;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom_vern", type="string", length=255, nullable=true)
+     */
+    private $nom_vern;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom_vern_eng", type="string", length=255, nullable=true)
+     */
+    private $nom_vern_eng;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="habitat", type="integer")
+     */
+    private $habitat;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fr", type="string", length=255, nullable=true)
+     */
+    private $fr;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="gf", type="string", length=255, nullable=true)
+     */
+    private $gf;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mar", type="string", length=255, nullable=true)
+     */
+    private $mar;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="gua", type="string", length=255, nullable=true)
+     */
+    private $gua;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sm", type="string", length=255, nullable=true)
+     */
+    private $sm;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sb", type="string", length=255, nullable=true)
+     */
+    private $sb;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="spm", type="string", length=255, nullable=true)
+     */
+    private $spm;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="may", type="string", length=255, nullable=true)
+     */
+    private $may;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="epa", type="string", length=255, nullable=true)
+     */
+    private $epa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="reu", type="string", length=255, nullable=true)
+     */
+    private $reu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sa", type="string", length=255, nullable=true)
+     */
+    private $sa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ta", type="string", length=255, nullable=true)
+     */
+    private $ta;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="taaf", type="string", length=255, nullable=true)
+     */
+    private $taaf;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nc", type="string", length=255, nullable=true)
+     */
+    private $nc;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="wf", type="string", length=255, nullable=true)
+     */
+    private $wf;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pf", type="string", length=255, nullable=true)
+     */
+    private $pf;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cli", type="string", length=255, nullable=true)
+     */
+    private $cli;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Observation", mappedBy="bird", cascade={"persist", "remove"})
@@ -88,123 +284,795 @@ class Bird
     }
 
     /**
-     * Set family
+     * Set regne
      *
-     * @param string $family
+     * @param string $regne
      *
      * @return Bird
      */
-    public function setFamily($family)
+    public function setRegne($regne)
     {
-        $this->family = $family;
+        $this->regne = $regne;
 
         return $this;
     }
 
     /**
-     * Get family
+     * Get regne
      *
      * @return string
      */
-    public function getFamily()
+    public function getRegne()
     {
-        return $this->family;
+        return $this->regne;
     }
 
     /**
-     * Set rank
+     * Set phylum
      *
-     * @param string $rank
+     * @param string $phylum
      *
      * @return Bird
      */
-    public function setRank($rank)
+    public function setPhylum($phylum)
     {
-        $this->rank = $rank;
+        $this->phylum = $phylum;
 
         return $this;
     }
 
     /**
-     * Get rank
+     * Get phylum
      *
      * @return string
      */
-    public function getRank()
+    public function getPhylum()
     {
-        return $this->rank;
+        return $this->phylum;
     }
 
     /**
-     * Set latinName
+     * Set classe
      *
-     * @param string $latinName
+     * @param string $classe
      *
      * @return Bird
      */
-    public function setLatinName($latinName)
+    public function setClasse($classe)
     {
-        $this->latinName = $latinName;
+        $this->classe = $classe;
 
         return $this;
     }
 
     /**
-     * Get latinName
+     * Get classe
      *
      * @return string
      */
-    public function getLatinName()
+    public function getClasse()
     {
-        return $this->latinName;
+        return $this->classe;
     }
 
     /**
-     * Set fullName
+     * Set ordre
      *
-     * @param string $fullName
+     * @param string $ordre
      *
      * @return Bird
      */
-    public function setFullName($fullName)
+    public function setOrdre($ordre)
     {
-        $this->fullName = $fullName;
+        $this->ordre = $ordre;
 
         return $this;
     }
 
     /**
-     * Get fullName
+     * Get ordre
      *
      * @return string
      */
-    public function getFullName()
+    public function getOrdre()
     {
-        return $this->fullName;
+        return $this->ordre;
     }
 
     /**
-     * Set commonName
+     * Set famille
      *
-     * @param string $commonName
+     * @param string $famille
      *
      * @return Bird
      */
-    public function setCommonName($commonName)
+    public function setFamille($famille)
     {
-        $this->commonName = $commonName;
+        $this->famille = $famille;
 
         return $this;
     }
 
     /**
-     * Get commonName
+     * Get famille
      *
      * @return string
      */
-    public function getCommonName()
+    public function getFamille()
     {
-        return $this->commonName;
+        return $this->famille;
+    }
+
+    /**
+     * Set cdNom
+     *
+     * @param string $cdNom
+     *
+     * @return Bird
+     */
+    public function setCdNom($cdNom)
+    {
+        $this->cd_nom = $cdNom;
+
+        return $this;
+    }
+
+    /**
+     * Get cdNom
+     *
+     * @return string
+     */
+    public function getCdNom()
+    {
+        return $this->cd_nom;
+    }
+
+    /**
+     * Set cdTaxsup
+     *
+     * @param string $cdTaxsup
+     *
+     * @return Bird
+     */
+    public function setCdTaxsup($cdTaxsup)
+    {
+        $this->cd_taxsup = $cdTaxsup;
+
+        return $this;
+    }
+
+    /**
+     * Get cdTaxsup
+     *
+     * @return string
+     */
+    public function getCdTaxsup()
+    {
+        return $this->cd_taxsup;
+    }
+
+    /**
+     * Set cdRef
+     *
+     * @param string $cdRef
+     *
+     * @return Bird
+     */
+    public function setCdRef($cdRef)
+    {
+        $this->cd_ref = $cdRef;
+
+        return $this;
+    }
+
+    /**
+     * Get cdRef
+     *
+     * @return string
+     */
+    public function getCdRef()
+    {
+        return $this->cd_ref;
+    }
+
+    /**
+     * Set rang
+     *
+     * @param string $rang
+     *
+     * @return Bird
+     */
+    public function setRang($rang)
+    {
+        $this->rang = $rang;
+
+        return $this;
+    }
+
+    /**
+     * Get rang
+     *
+     * @return string
+     */
+    public function getRang()
+    {
+        return $this->rang;
+    }
+
+    /**
+     * Set lbNom
+     *
+     * @param string $lbNom
+     *
+     * @return Bird
+     */
+    public function setLbNom($lbNom)
+    {
+        $this->lb_nom = $lbNom;
+
+        return $this;
+    }
+
+    /**
+     * Get lbNom
+     *
+     * @return string
+     */
+    public function getLbNom()
+    {
+        return $this->lb_nom;
+    }
+
+    /**
+     * Set lbAuteur
+     *
+     * @param string $lbAuteur
+     *
+     * @return Bird
+     */
+    public function setLbAuteur($lbAuteur)
+    {
+        $this->lb_auteur = $lbAuteur;
+
+        return $this;
+    }
+
+    /**
+     * Get lbAuteur
+     *
+     * @return string
+     */
+    public function getLbAuteur()
+    {
+        return $this->lb_auteur;
+    }
+
+    /**
+     * Set nomComplet
+     *
+     * @param string $nomComplet
+     *
+     * @return Bird
+     */
+    public function setNomComplet($nomComplet)
+    {
+        $this->nom_complet = $nomComplet;
+
+        return $this;
+    }
+
+    /**
+     * Get nomComplet
+     *
+     * @return string
+     */
+    public function getNomComplet()
+    {
+        return $this->nom_complet;
+    }
+
+    /**
+     * Set nomValide
+     *
+     * @param string $nomValide
+     *
+     * @return Bird
+     */
+    public function setNomValide($nomValide)
+    {
+        $this->nom_valide = $nomValide;
+
+        return $this;
+    }
+
+    /**
+     * Get nomValide
+     *
+     * @return string
+     */
+    public function getNomValide()
+    {
+        return $this->nom_valide;
+    }
+
+    /**
+     * Set nomVern
+     *
+     * @param string $nomVern
+     *
+     * @return Bird
+     */
+    public function setNomVern($nomVern)
+    {
+        $this->nom_vern = $nomVern;
+
+        return $this;
+    }
+
+    /**
+     * Get nomVern
+     *
+     * @return string
+     */
+    public function getNomVern()
+    {
+        return $this->nom_vern;
+    }
+
+    /**
+     * Set nomVernEng
+     *
+     * @param string $nomVernEng
+     *
+     * @return Bird
+     */
+    public function setNomVernEng($nomVernEng)
+    {
+        $this->nom_vern_eng = $nomVernEng;
+
+        return $this;
+    }
+
+    /**
+     * Get nomVernEng
+     *
+     * @return string
+     */
+    public function getNomVernEng()
+    {
+        return $this->nom_vern_eng;
+    }
+
+    /**
+     * Set habitat
+     *
+     * @param string $habitat
+     *
+     * @return Bird
+     */
+    public function setHabitat($habitat)
+    {
+        $this->habitat = $habitat;
+
+        return $this;
+    }
+
+    /**
+     * Get habitat
+     *
+     * @return string
+     */
+    public function getHabitat()
+    {
+        return $this->habitat;
+    }
+
+    /**
+     * Set fr
+     *
+     * @param string $fr
+     *
+     * @return Bird
+     */
+    public function setFr($fr)
+    {
+        $this->fr = $fr;
+
+        return $this;
+    }
+
+    /**
+     * Get fr
+     *
+     * @return string
+     */
+    public function getFr()
+    {
+        return $this->fr;
+    }
+
+    /**
+     * Set gf
+     *
+     * @param string $gf
+     *
+     * @return Bird
+     */
+    public function setGf($gf)
+    {
+        $this->gf = $gf;
+
+        return $this;
+    }
+
+    /**
+     * Get gf
+     *
+     * @return string
+     */
+    public function getGf()
+    {
+        return $this->gf;
+    }
+
+    /**
+     * Set mar
+     *
+     * @param string $mar
+     *
+     * @return Bird
+     */
+    public function setMar($mar)
+    {
+        $this->mar = $mar;
+
+        return $this;
+    }
+
+    /**
+     * Get mar
+     *
+     * @return string
+     */
+    public function getMar()
+    {
+        return $this->mar;
+    }
+
+    /**
+     * Set gua
+     *
+     * @param string $gua
+     *
+     * @return Bird
+     */
+    public function setGua($gua)
+    {
+        $this->gua = $gua;
+
+        return $this;
+    }
+
+    /**
+     * Get gua
+     *
+     * @return string
+     */
+    public function getGua()
+    {
+        return $this->gua;
+    }
+
+    /**
+     * Set sm
+     *
+     * @param string $sm
+     *
+     * @return Bird
+     */
+    public function setSm($sm)
+    {
+        $this->sm = $sm;
+
+        return $this;
+    }
+
+    /**
+     * Get sm
+     *
+     * @return string
+     */
+    public function getSm()
+    {
+        return $this->sm;
+    }
+
+    /**
+     * Set sb
+     *
+     * @param string $sb
+     *
+     * @return Bird
+     */
+    public function setSb($sb)
+    {
+        $this->sb = $sb;
+
+        return $this;
+    }
+
+    /**
+     * Get sb
+     *
+     * @return string
+     */
+    public function getSb()
+    {
+        return $this->sb;
+    }
+
+    /**
+     * Set spm
+     *
+     * @param string $spm
+     *
+     * @return Bird
+     */
+    public function setSpm($spm)
+    {
+        $this->spm = $spm;
+
+        return $this;
+    }
+
+    /**
+     * Get spm
+     *
+     * @return string
+     */
+    public function getSpm()
+    {
+        return $this->spm;
+    }
+
+    /**
+     * Set may
+     *
+     * @param string $may
+     *
+     * @return Bird
+     */
+    public function setMay($may)
+    {
+        $this->may = $may;
+
+        return $this;
+    }
+
+    /**
+     * Get may
+     *
+     * @return string
+     */
+    public function getMay()
+    {
+        return $this->may;
+    }
+
+    /**
+     * Set epa
+     *
+     * @param string $epa
+     *
+     * @return Bird
+     */
+    public function setEpa($epa)
+    {
+        $this->epa = $epa;
+
+        return $this;
+    }
+
+    /**
+     * Get epa
+     *
+     * @return string
+     */
+    public function getEpa()
+    {
+        return $this->epa;
+    }
+
+    /**
+     * Set reu
+     *
+     * @param string $reu
+     *
+     * @return Bird
+     */
+    public function setReu($reu)
+    {
+        $this->reu = $reu;
+
+        return $this;
+    }
+
+    /**
+     * Get reu
+     *
+     * @return string
+     */
+    public function getReu()
+    {
+        return $this->reu;
+    }
+
+    /**
+     * Set sa
+     *
+     * @param string $sa
+     *
+     * @return Bird
+     */
+    public function setSa($sa)
+    {
+        $this->sa = $sa;
+
+        return $this;
+    }
+
+    /**
+     * Get sa
+     *
+     * @return string
+     */
+    public function getSa()
+    {
+        return $this->sa;
+    }
+
+    /**
+     * Set ta
+     *
+     * @param string $ta
+     *
+     * @return Bird
+     */
+    public function setTa($ta)
+    {
+        $this->ta = $ta;
+
+        return $this;
+    }
+
+    /**
+     * Get ta
+     *
+     * @return string
+     */
+    public function getTa()
+    {
+        return $this->ta;
+    }
+
+    /**
+     * Set taaf
+     *
+     * @param string $taaf
+     *
+     * @return Bird
+     */
+    public function setTaaf($taaf)
+    {
+        $this->taaf = $taaf;
+
+        return $this;
+    }
+
+    /**
+     * Get taaf
+     *
+     * @return string
+     */
+    public function getTaaf()
+    {
+        return $this->taaf;
+    }
+
+    /**
+     * Set nc
+     *
+     * @param string $nc
+     *
+     * @return Bird
+     */
+    public function setNc($nc)
+    {
+        $this->nc = $nc;
+
+        return $this;
+    }
+
+    /**
+     * Get nc
+     *
+     * @return string
+     */
+    public function getNc()
+    {
+        return $this->nc;
+    }
+
+    /**
+     * Set wf
+     *
+     * @param string $wf
+     *
+     * @return Bird
+     */
+    public function setWf($wf)
+    {
+        $this->wf = $wf;
+
+        return $this;
+    }
+
+    /**
+     * Get wf
+     *
+     * @return string
+     */
+    public function getWf()
+    {
+        return $this->wf;
+    }
+
+    /**
+     * Set pf
+     *
+     * @param string $pf
+     *
+     * @return Bird
+     */
+    public function setPf($pf)
+    {
+        $this->pf = $pf;
+
+        return $this;
+    }
+
+    /**
+     * Get pf
+     *
+     * @return string
+     */
+    public function getPf()
+    {
+        return $this->pf;
+    }
+
+    /**
+     * Set cli
+     *
+     * @param string $cli
+     *
+     * @return Bird
+     */
+    public function setCli($cli)
+    {
+        $this->cli = $cli;
+
+        return $this;
+    }
+
+    /**
+     * Get cli
+     *
+     * @return string
+     */
+    public function getCli()
+    {
+        return $this->cli;
     }
 
     /**

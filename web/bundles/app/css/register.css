@@ -1,5 +1,5 @@
 body {
-	background-image: url("http://assets.fhuszti.tech/nao/register/register-bg.jpg");
+	background-image: url("http://fhuszti.com.s3.amazonaws.com/nao/register/register-bg.jpg");
   	background-size: cover;
   	background-position: center center;
   	background-repeat: no-repeat;
@@ -15,7 +15,7 @@ body {
 	border: 1px outset #eee;
 }
 #register_content #register_bird {
-	background-image: url('http://assets.fhuszti.tech/nao/register/register-bird.png');
+	background-image: url('http://fhuszti.com.s3.amazonaws.com/nao/register/register-bird.png');
 	background-size: 160px;
 	background-repeat: no-repeat;
 	height: 180px;

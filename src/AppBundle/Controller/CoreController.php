@@ -83,7 +83,7 @@ class CoreController extends Controller
 
 
     /**
-     * @Route("/find/", name="find")
+     * @Route("/recherche", name="core_search")
      */
     public function findAction(Request $request)
 	{
