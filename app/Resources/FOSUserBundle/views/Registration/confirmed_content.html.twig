@@ -1,0 +1,17 @@
+<div class="col-xs-12 nao_title">
+	<div class="col-xs-10 col-sm-6">
+		<h1>{{ 'core.register.title'|trans|upper }}</h1>
+	</div>
+
+	<div class="hidden-xs col-sm-2 nao_title-icon">
+		{% image 'http://fhuszti.com.s3.amazonaws.com/nao/second-menu/register.png' %}
+			<img src="{{ asset_url }}" alt="{{ 'core.second-menu.register'|trans }}" />
+		{% endimage %}
+	</div>
+</div>
+
+<div class="col-xs-12" id="register_content">
+	<p id="register_congrats">
+        {{ 'core.register.congrats'|trans }}
+    </p>
+</div>
