@@ -24,7 +24,7 @@
     {{ parent() }}
 
     {% stylesheets filter='cssrewrite, ?scssphp'
-        'bundles/app/css/login.css' %}
+        'css/login.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
     {% endstylesheets %}
 {% endblock %}
@@ -37,7 +37,7 @@
     {{ parent() }}
 
     {% javascripts filter='?jsqueeze'
-        'bundles/app/js/login.js' %}
+        'js/login.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}

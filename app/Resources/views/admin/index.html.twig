@@ -5,7 +5,7 @@
     {{ parent() }}
 
     {% stylesheets filter='cssrewrite, ?scssphp'
-        'bundles/app/css/admin.css' %}
+        'css/admin.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
     {% endstylesheets %}
 {% endblock %}
@@ -70,7 +70,7 @@
     {{ parent() }}
 
     {% javascripts filter='?jsqueeze'
-        'bundles/app/js/admin.js' %}
+        'js/admin.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}

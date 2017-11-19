@@ -24,7 +24,7 @@
 {% block stylesheets %}
   {{ parent() }}
     {% stylesheets filter='cssrewrite, ?scssphp'
-        'bundles/app/css/observation.css' %}
+        'css/observation.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
     {% endstylesheets %}
 {% endblock %}
@@ -98,7 +98,7 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQU7F5LE2WL4xxEpeUysxGqriN_RM36G0&language=fr&region=FR"></script>
 
     {% javascripts filter='?jsqueeze'
-        'bundles/app/js/observation.js' %}
+        'js/observation.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}

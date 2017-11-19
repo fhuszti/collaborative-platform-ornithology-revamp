@@ -26,7 +26,7 @@
     {{ parent() }}
 
     {% stylesheets filter='cssrewrite, ?scssphp'
-        'bundles/app/css/register.css' %}
+        'css/register.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
     {% endstylesheets %}
 {% endblock %}
@@ -39,7 +39,7 @@
     {{ parent() }}
 
     {% javascripts filter='?jsqueeze'
-        'bundles/app/js/register.js' %}
+        'js/register.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}

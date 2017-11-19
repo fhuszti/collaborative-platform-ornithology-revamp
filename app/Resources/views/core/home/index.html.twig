@@ -24,7 +24,7 @@
     {{ parent() }}
 
     {% stylesheets filter='cssrewrite, ?scssphp'
-        'bundles/app/css/home.css' %}
+        'css/home.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
     {% endstylesheets %}
 {% endblock %}

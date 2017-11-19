@@ -24,9 +24,9 @@
 	{{ parent() }}
 
     {% stylesheets filter='cssrewrite, ?scssphp'
-    	'bundles/app/css/search.css'
-    	'bundles/app/css/bird.css'
-        'bundles/app/css/jquery.bsPhotoGallery.css' %}
+    	'css/search.css'
+    	'css/bird.css'
+        'css/jquery.bsPhotoGallery.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
     {% endstylesheets %}
 {% endblock %}
@@ -69,8 +69,8 @@
     {{ parent() }}
 
     {% javascripts filter='?jsqueeze'
-        'bundles/app/js/search.js'
-        'bundles/app/js/jquery.bsPhotoGallery.js' %}
+        'js/search.js'
+        'js/jquery.bsPhotoGallery.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}
