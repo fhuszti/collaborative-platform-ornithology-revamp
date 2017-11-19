@@ -1,6 +1,6 @@
 {{ form_start(form, {
 	'method': 'post',
-	'action': path('admin_user_edit', {'id': user.id}),
+	'action': action,
 	'attr': {
 		'class': 'form-horizontal',
         'id': 'user-edit-form'
@@ -75,6 +75,4 @@
         	{{ form_widget(form.plainPassword.second) }}
         </div>
     </div>
-    
-    <button type="submit" class="hidden" id="user-edit-form-button"></button>
 {{ form_end(form) }}

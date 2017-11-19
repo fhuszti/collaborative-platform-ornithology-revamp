@@ -44,7 +44,7 @@ class FormManager {
 	public function submitUserType($form, $user, SessionInterface $session, $successMessage = '') 
 	{
 		//define form fields to check for errors
-		$fields = array('username', 'email', 'roles', 'plainPassword');
+		$fields = array('firstName', 'surname', 'email', 'roles', 'plainPassword');
 		
 		//default success message if none given
 		if ($successMessage === '')

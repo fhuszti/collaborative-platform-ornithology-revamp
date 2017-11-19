@@ -1,10 +1,6 @@
 {% extends 'layout.html.twig' %}
 {% set adminPage = true %}
 
-{% import "admin/macros/_macroUserDisplay.html.twig" as macroUserDisplay %}
-{% import "admin/macros/_macroUserEditModal.html.twig" as macroUserEditModal %}
-{% import "admin/macros/_macroUserDeleteModal.html.twig" as macroUserDeleteModal %}
-
 {% block stylesheets %}
     {{ parent() }}
 
@@ -39,22 +35,26 @@
 	  	</ul>
 	  	
 	  	<div class="tab-content">
-	      	<div class="tab-pane active" id="observations">
+	      	{% for flashMessage in app.session.flashbag.get('error') %}
+			    <div class="col-xs-12 alert alert-danger">
+			        {{ flashMessage }}
+			    </div>
+			{% endfor %}
+			{% for flashMessage in app.session.flashbag.get('success') %}
+			    <div class="col-xs-12 alert alert-success">
+			        {{ flashMessage }}
+			    </div>
+			{% endfor %}
+
+			<div class="tab-pane active" id="observations">
 	      		{% include 'admin/blocks/observations/observations.html.twig' %}
 	      	</div>
 
 	      	<div class="tab-pane" id="users">
-	      		{% for user in users %}
-	      			{{ macroUserDisplay.user_display(user) }}
-      			{% else %}
-      				<div class="col-xs-12">{{ 'core.admin.no_user'|trans }}</div>
-      			{% endfor %}
+	      		{% include 'admin/blocks/users/users.html.twig' %}
 	      	</div>
 	  	</div>
 	</div>
-
-	{{ macroUserEditModal.user_edit_modal() }}
-	{{ macroUserDeleteModal.user_delete_modal() }}
 {% endblock %}
 
 {% block javascripts %}

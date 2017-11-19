@@ -1,0 +1,12 @@
+{% import "admin/macros/_macroUserDisplay.html.twig" as macroUserDisplay %}
+
+{% for user in users %}
+	{{ macroUserDisplay.user_display(user) }}
+{% else %}
+	<div class="col-xs-12">
+		{{ 'core.admin.no_user'|trans }}
+	</div>
+{% endfor %}
+
+{% include 'admin/modals/user-edit-modal.html.twig' %}
+{% include 'admin/modals/user-delete-modal.html.twig' %}

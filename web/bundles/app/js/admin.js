@@ -81,67 +81,42 @@ $(function() {
 
 
 
-
-	//manage the route the confirm delete button is gonna point to
-	function manageUserDeleteConfirm() {
+	//init user delete modal
+	function initUserDeleteModal() {
 		var buttons = $('.user_button-row .btn-danger'),
-			confirm = $('#admin_user-delete-modal-confirm'),
-			current_href = confirm.attr('href'),
-			new_href;
-
-		//if current href already is the full need href, we cut the ID at the end
-		if ( current_href.indexOf('user/delete') !== -1 ) {
-			current_href = current_href.substring( 0, current_href.lastIndexOf('/') + 1 );
-		}
-		//else we complete the href with user/delete/
-		else {
-			current_href = current_href+'user/delete/';
-		}
+			confirm = $('#admin_user-delete-confirm');
 
 		//for each of the "delete" buttons
 		buttons.each(function(index, elmt) {
 			$(elmt).on('click', function(e) {
-				//on click we assign the user id to the path
-				//and we update the href of the confirmation button
-				new_href = current_href+''+$(e.target).data('id');
-				confirm.attr('href', new_href);
+				//on click we assign the delete url to the modal confirm button
+				confirm.attr( 'href', $(e.target).data('url') );
 			});
 		});
 	}
 
 
 
-
 	//load correct user edit form into the modal
-	function manageUserEditModal() {
+	function initUserEditModal() {
 		var buttons = $('.user_button-row .btn-warning'),
 			modal_body = $('#admin_user-edit-modal-body'),
-			confirm = $('#admin_user-edit-modal-confirm'),
-			current_href = $(confirm).data('href'),
-			new_href;
-
-		//if current href already is the full need href, we cut the ID at the end
-		if ( current_href.indexOf('user/edit') !== -1 ) {
-			current_href = current_href.substring( 0, current_href.lastIndexOf('/') + 1 );
-		}
-		//else we complete the href with user/edit/
-		else {
-			current_href = current_href+'user/edit/';
-		}
+			confirm = $('#admin_user-edit-confirm');
 
 		//for each of the "edit" buttons
 		buttons.each(function(index, elmt) {
 			$(elmt).on('click', function(e) {
-				//on click we assign the user id to the path
-				//and we update the href of the confirmation button
-				new_href = current_href+''+$(e.target).data('id');
-		
-				//and we load the correct form inside the modal
-				modal_body.load(new_href, function() {
-
+				//we load the correct form inside the modal
+				modal_body.load($(e.target).data('url'), function() {
+					modal_body.find('.checkbox>label').removeClass();
 				});
 			});
 		});
+
+        //empty modal when closing
+        $('#admin_user-edit-modal').on('hidden.bs.modal', function() {
+        	$('#admin_user-edit-modal-body').html('');
+        });
 	}
 
 
@@ -151,6 +126,6 @@ $(function() {
 	$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyAQU7F5LE2WL4xxEpeUysxGqriN_RM36G0");
 
 	initObservationModal();
-	manageUserDeleteConfirm();
-	manageUserEditModal();
+	initUserDeleteModal();
+	initUserEditModal();
 });

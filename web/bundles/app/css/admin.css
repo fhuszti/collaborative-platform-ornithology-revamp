@@ -45,9 +45,11 @@ body {
 }
 #observations .observation-row, #users .user-row {
 	border-bottom: 1px solid #ccc;
-	cursor: pointer;
 	padding-bottom: 10px;
 	margin-bottom: 10px;
+}
+#observations .observation-row {
+	cursor: pointer;
 }
 #observations .observation-row:hover, #observations .observation-row:active, #observations .observation-row:focus {
 	background-color: #eee;
