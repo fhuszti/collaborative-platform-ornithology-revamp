@@ -1,12 +1,4 @@
 core:
-    resource: "@AppBundle/Controller/CoreController.php"
-    type:     annotation
-    prefix:   /
-app:
-    resource: "@AppBundle/Controller/AjaxController.php"
-    type:     annotation
-    prefix:   /ajax
-App:
     resource: "@AppBundle/Controller/"
     type:     annotation
     prefix:   /
@@ -15,11 +7,6 @@ admin:
     resource: "@AppBundle/Controller/AdminController.php"
     type:     annotation
     prefix:   /admin
-
-observation:
-    resource: "@AppBundle/Controller/ObservationController.php"
-    type:     annotation
-    prefix:   /admin/obs
 
 user:
     resource: "@UserBundle/Controller/UserController.php"

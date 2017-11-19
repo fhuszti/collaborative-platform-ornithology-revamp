@@ -1,0 +1,40 @@
+{% extends 'layout.html.twig' %}
+{% set homePage = true %}
+{% import "macros/_macroMetaTags.html.twig" as macroMetaTags %}
+
+{% set meta_title %}{{'core.home.meta_title'|trans}}{% endset %}
+
+{% set meta_description %}
+{{'core.home.meta_description'|trans}}
+{% endset %}
+
+{% set meta_url %}
+{{ url('core_home') }}
+{% endset %}
+
+{% block title %}
+    {{ meta_title }} - {{ parent() }}
+{% endblock %}
+
+{% block meta %}
+    {{ macroMetaTags.meta_tags(meta_title, meta_description, meta_url ) }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% stylesheets filter='cssrewrite, ?scssphp'
+        'bundles/app/css/home.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+	<div id="carousel" class="row carousel slide hidden-xs" data-ride="carousel">
+	  	{% include 'core/home/blocks/carousel.html.twig' %}
+	</div>
+
+    <div id="mainContent" class="row">
+    	{% include 'core/home/blocks/content.html.twig' %}
+    </div>
+{% endblock %}

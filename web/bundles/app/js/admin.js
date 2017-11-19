@@ -1,21 +1,36 @@
 $(function() {
 	
+	//show the loading screen and hide the content
+	function startContentLoading(modal, newHidden = []) {
+		modal.children('.hidden').removeClass('hidden');
+		newHidden.forEach(function(elmt) {
+			elmt.addClass('hidden');
+		});
+	}
+
+	//hide the loading screen and show the content
+	function endContentLoading(modal) {
+		modal.children('.hidden').removeClass('hidden');
+		modal.children('.loader').addClass('hidden');
+	}
+
+
+
 	//generate a different button depending on the actual state of the observation
-	function generateStateBtn(state, id, admin_url) {
+	function generateStateBtn(state, urls) {
 		var button;
 
 		switch (state) {
-			//bootstrap == verbose
 			case 'valid':
-				button = $('<button class="btn btn-success"><span class="glyphicon glyphicon-ok-circle"></span> Validée</button><button class="btn btn-success dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu"><li><a href="'+admin_url+'obs/await/'+id+'" class="alert-warning"><span class="glyphicon glyphicon-refresh"></span> Mettre en attente</a></li><li><a href="'+admin_url+'obs/refuse/'+id+'" class="alert-danger"><span class="glyphicon glyphicon-remove-circle"></span> Refuser</a></li></ul>');
+				button = $('<button class="btn btn-success"><span class="glyphicon glyphicon-ok-circle"></span> Validée</button><button class="btn btn-success dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu"><li><a href="'+urls.await+'" class="alert-warning"><span class="glyphicon glyphicon-refresh"></span> Mettre en attente</a></li><li><a href="'+urls.refuse+'" class="alert-danger"><span class="glyphicon glyphicon-remove-circle"></span> Refuser</a></li></ul>');
 				break;
 
 			case 'refused':
-				button = $('<button class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span> Refusée</button><button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu"><li><a href="'+admin_url+'obs/validate/'+id+'" class="alert-success"><span class="glyphicon glyphicon-ok-circle"></span> Valider</a></li><li><a href="'+admin_url+'obs/await/'+id+'" class="alert-warning"><span class="glyphicon glyphicon-refresh"></span> Mettre en attente</a></li></ul>');
+				button = $('<button class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span> Refusée</button><button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu"><li><a href="'+urls.validate+'" class="alert-success"><span class="glyphicon glyphicon-ok-circle"></span> Valider</a></li><li><a href="'+urls.await+'" class="alert-warning"><span class="glyphicon glyphicon-refresh"></span> Mettre en attente</a></li></ul>');
 				break;
 
 			default:
-				button = $('<button class="btn btn-warning"><span class="glyphicon glyphicon-refresh"></span> En attente</button><button class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu"><li><a href="'+admin_url+'obs/validate/'+id+'" class="alert-success"><span class="glyphicon glyphicon-ok-circle"></span> Valider</a></li><li><a href="'+admin_url+'obs/refuse/'+id+'" class="alert-danger"><span class="glyphicon glyphicon-remove-circle"></span> Refuser</a></li></ul>');
+				button = $('<button class="btn btn-warning"><span class="glyphicon glyphicon-refresh"></span> En attente</button><button class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu"><li><a href="'+urls.validate+'" class="alert-success"><span class="glyphicon glyphicon-ok-circle"></span> Valider</a></li><li><a href="'+urls.refuse+'" class="alert-danger"><span class="glyphicon glyphicon-remove-circle"></span> Refuser</a></li></ul>');
 				break;
 		}
 
@@ -23,16 +38,11 @@ $(function() {
 	}
 
 	//init google maps
-	function initMap(param = null) {
-		//default parameter if non given
-		if (param == null) {
-			param = {lat: 36.8451807, lng: 10.1031312};
-		}
-	  	
-	  	//generate the map
+	function initMap(pos) {
+		//generate the map
 	  	var map = new google.maps.Map(document.getElementById('gmaps_canvas'), {
 	    	zoom: 8,
-	    	center: param
+	    	center: pos
 	  	});
 	  	
 	  	//responsive map
@@ -40,148 +50,127 @@ $(function() {
 	  	
 	  	//generate the marker at the right position
 	  	var marker = new google.maps.Marker({
-	    	position: param,
+	    	position: pos,
 	    	map: map
 	  	});
 	}
 
-	//manage the observation modal display
-	function manageObservationModal() {
+	//init the observation modal display
+	function initObservationModal() {
 		var observations = $('#observations .observation-row');
 
+        //init observation display load on modal opening for every observation
         observations.each(function(index, elmt) {
             $(elmt).on('click', function(e) {
-            	e.preventDefault();
+				//start loading animation
+				startContentLoading(
+					$('#admin_obs-modal').find('.modal-content'),
+					[
+						$('#admin_obs-modal').find('.modal-footer')
+					]
+				);
 
-            	//get the observation data
-            	var image = $(this).data('image') ? $(this).data('image') : null,
-            		state = $(this).data('state'),
-            		id = $(this).data('id'),
-            		admin_url = $(this).data('url'),
-            		name = $(this).data('name'),
-            		date = $(this).data('date'),
-            		country = $(this).data('country'),
-            		comment = $(this).data('comment') ? $(this).data('comment') : null,
-            		lat = $(this).data('lattitude'),
-            		lng = $(this).data('longitude');
+            	//get current observation state and generate custom state button
+            	var state = $(this).data('state'),
+	            	urls = {
+	            		'validate': $(this).data('validate'),
+	            		'await': $(this).data('await'),
+	            		'refuse': $(this).data('refuse')
+	            	};
+            	generateStateBtn(state, urls).appendTo( $('#admin_obs-modal-state') );
 
-            	//modal window elements
-            	var modal = $('#admin_obs-modal'),
-            		modal_state = $('#admin_obs-modal-state'),
-            		modal_left = modal.find('.admin_obs-modal-left-panel'),
-            		modal_right = $('#gmaps_canvas'),
-            		modal_comment = modal.find('.admin_obs-modal-comment-panel'),
-            		ul = $('<ul></ul>'),
-            		obsDiv = $(e.target);
+            	//we load the right observation inside the modal
+				$('#admin_obs-modal-body').load($(this).data('url'), function() {
+					//get the observation position data
+	            	var gmaps_canvas = $('#gmaps_canvas'),
+	            		lat = parseFloat( gmaps_canvas.data('lattitude') ),
+	            		lng = parseFloat( gmaps_canvas.data('longitude') ),
+	            		pos = { lat: lat, lng: lng };
 
-            	//we reset everything in case the modal has been opened and is filled with content already
-            	modal_state.html('');
-            	modal_left.html('');
-            	modal_right.html('');
-            	modal_comment.html('');
-
-            	var state_btn = generateStateBtn( state, id, admin_url );
-            	state_btn.appendTo(modal_state);
-
-            	//add the image if there is one
-            	if (image !== null) {
-	            	$('<img src="'+image+'" alt="'+name+'" />').appendTo(modal_left);
-	            }
-
-	            //add the informations list
-	            $('<li>'+name+'</li>').appendTo(ul);
-	            $('<li>'+date+'</li>').appendTo(ul);
-	            $('<li>'+country+'</li>').appendTo(ul);
-	            ul.appendTo(modal_left);
-
-	            //add the comment if there is one
-            	if (comment !== null) {
-	            	//<br> obligatoire, sinon le commentaire ne s'affiche pas
-	            	$('<hr />'+comment+'<br />').appendTo(modal_comment);
-	            }
-
-				//initialise the map once the modal is fully loaded and visible after a click on an observation
-				modal.on('shown.bs.modal', function () {
+	            	//initialise the map
 					if (typeof google === 'object' && typeof google.maps === 'object') {
-					 	initMap( {lat: parseFloat(lat), lng: parseFloat(lng)} );
+					 	initMap( pos );
 					}
+
+	    			//hide the loading screen and show the content
+	    			endContentLoading( $('#admin_obs-modal').find('.modal-content') );
 				});
             });
+        });
+
+        //empty modal when closing
+        $('#admin_obs-modal').on('hidden.bs.modal', function() {
+        	$('#admin_obs-modal-body').html('');
+
+        	$('#admin_obs-modal-state').html('');
+        });
+	}
+
+
+
+	//init delete modal
+	function initDeleteModal() {
+		var buttons = $('#admin_content .btn-danger'),
+			confirm = $('#admin_delete-confirm');
+
+		//for each of the "delete" buttons
+		buttons.each(function(index, elmt) {
+			$(elmt).on('click', function(e) {
+
+				//on click we assign the delete url to the modal confirm button
+				confirm.attr( 'href', $(e.target).data('url') );
+			});
+		});
+	}
+
+
+
+	//load correct user edit form into the modal
+	function initUserEditModal() {
+		var buttons = $('.user_button-row .btn-warning'),
+			modal_body = $('#admin_user-edit-modal-body'),
+			confirm = $('#admin_user-edit-confirm');
+
+		//for each of the "edit" buttons
+		buttons.each(function(index, elmt) {
+			$(elmt).on('click', function(e) {
+				//start loading animation
+				startContentLoading(
+					$('#admin_user-edit-modal').find('.modal-content'),
+					[
+						$('#admin_user-edit-modal').find('.modal-footer')
+					]
+				);
+				
+				//we load the correct form inside the modal
+				modal_body.load($(e.target).data('url'), function() {
+					modal_body.find('.checkbox>label').removeClass();
+
+	    			//hide the loading screen and show the content
+	    			endContentLoading( $('#admin_user-edit-modal').find('.modal-content') );
+				});
+			});
+		});
+
+        //empty modal when closing
+        $('#admin_user-edit-modal').on('hidden.bs.modal', function() {
+        	$('#admin_user-edit-modal-body').html('');
         });
 	}
 
 
 
 
-	//manage the route the confirm delete button is gonna point to
-	function manageUserDeleteConfirm() {
-		var buttons = $('.user_button-row .btn-danger'),
-			confirm = $('#admin_user-delete-modal-confirm'),
-			current_href = confirm.attr('href'),
-			new_href;
 
-		//if current href already is the full need href, we cut the ID at the end
-		if ( current_href.indexOf('user/delete') !== -1 ) {
-			current_href = current_href.substring( 0, current_href.lastIndexOf('/') + 1 );
-		}
-		//else we complete the href with user/delete/
-		else {
-			current_href = current_href+'user/delete/';
-		}
+	$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyAQU7F5LE2WL4xxEpeUysxGqriN_RM36G0");
 
-		//for each of the "delete" buttons
-		buttons.each(function(index, elmt) {
-			$(elmt).on('click', function(e) {
-				//on click we assign the user id to the path
-				//and we update the href of the confirmation button
-				new_href = current_href+''+$(e.target).data('id');
-				confirm.attr('href', new_href);
-			});
-		});
-	}
+	initObservationModal();
+	initDeleteModal();
+	initUserEditModal();
+});
 
-
-
-
-	//load correct user edit form into the modal
-	function manageUserEditModal() {
-		var buttons = $('.user_button-row .btn-warning'),
-			modal_body = $('#admin_user-edit-modal-body'),
-			confirm = $('#admin_user-edit-modal-confirm'),
-			current_href = $(confirm).data('href'),
-			new_href;
-
-		//if current href already is the full need href, we cut the ID at the end
-		if ( current_href.indexOf('user/edit') !== -1 ) {
-			current_href = current_href.substring( 0, current_href.lastIndexOf('/') + 1 );
-		}
-		//else we complete the href with user/edit/
-		else {
-			current_href = current_href+'user/edit/';
-		}
-
-		//for each of the "edit" buttons
-		buttons.each(function(index, elmt) {
-			$(elmt).on('click', function(e) {
-				//on click we assign the user id to the path
-				//and we update the href of the confirmation button
-				new_href = current_href+''+$(e.target).data('id');
-		
-				//and we load the correct form inside the modal
-				modal_body.load(new_href, function() {
-
-				});
-			});
-		});
-	}
-
-
-
-
-
-	$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyCEL05YUkkeIBtLXDKcrZyM4kIkgbEOYS8");
-
-	manageObservationModal();
-	manageUserDeleteConfirm();
-	manageUserEditModal();
+//hide the initial loading screen and show the content of the page on load finished
+$(window).on('load', function() {
+	$('#admin_content>.hidden').removeClass('hidden');
+	$('#admin_content>.loader').addClass('hidden');
 });

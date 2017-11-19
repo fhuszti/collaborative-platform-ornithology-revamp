@@ -1,0 +1,47 @@
+<div class="col-xs-12 bird-block-header">
+	{{ 'core.bird.infos.title'|trans }}
+</div>
+
+<div class="col-xs-12">
+	<ul class="row">
+		<li>
+			{% if bird.nomVern is not empty %}{{ bird.nomVern|upper }}{% else %}{{ bird.lbNom|upper }}{% endif %}
+		</li>
+		<li>
+			<b>{{ 'core.bird.infos.family'|trans }} :</b> {{ bird.famille }}
+		</li>
+		<li>
+			<b>{{ 'core.bird.infos.rank'|trans }} :</b> {% if bird.rang == 'ES' %}{{ 'core.bird.infos.es'|trans }}{% else %}{{ 'core.bird.infos.sses'|trans }}{% endif %}
+		</li>
+		<li>
+			<b>{{ 'core.bird.infos.latin'|trans }} :</b> {{ bird.lbNom }}
+		</li>
+		<li>
+			<b>{{ 'core.bird.infos.full'|trans }} :</b> {{ bird.nomComplet }}
+		</li>
+		<li>
+			<b>{{ 'core.bird.infos.common'|trans }} :</b> {% if bird.nomVern is not empty %}{{ bird.nomVern }}{% else %}-{% endif %}
+		</li>
+	</ul>
+</div>
+
+<div class="col-xs-12" id="gmaps_canvas">
+</div>
+
+<div class="col-xs-12 bird-block-header">
+	{{ 'core.bird.gallery.title'|trans }}
+</div>
+
+<div class="col-xs-12">
+	<ul class="gallery">
+		{% for observation in bird.observations if observation.image is not empty %}
+			<li>
+				<img src="{{ asset('uploads/images/' ~ observation.image.fileName) }}" alt="{% if bird.nomVern is not empty %}({{ bird.nomVern }}) {% endif %}{{ bird.lbNom }}" />
+			</li>
+		{% else %}
+			</ul>
+			{{ 'core.profile.gallery.empty.sentence'|trans }}
+			<ul>
+		{% endfor %}
+	</ul>
+</div>

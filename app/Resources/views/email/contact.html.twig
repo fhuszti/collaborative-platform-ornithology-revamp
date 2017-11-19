@@ -1,0 +1,24 @@
+<div style="width:100%;height:150px;background-color:#f8f8f8;border-bottom:1px solid rgb(0,72,0);display:flex;justify-content:space-around;">
+	<div style="margin-top:5px;width:100%;padding-left:10px;text-align:center;">
+		<a href="{{ path('core_home') }}" title="Site de Nos Amis les Oiseaux">
+            <img src="{{ imgUrl }}" alt="Logo de Nos Amis les oiseaux" style="height:140px;" />
+		</a>
+	</div>
+</div>
+
+<div class="row" style="margin-top:10px;">
+	<p>
+		<b>Nom de l'expéditeur :</b> {{ entity.name }}
+		<br />
+		<b>Adresse email de l'expéditeur :</b> {{ entity.email }}
+	</p>
+</div>
+
+<div class="row">
+	<p>
+		<b>Message :</b>
+	</p>
+	<p>
+		{{ entity.content|nl2br }}
+	</p>
+</div>

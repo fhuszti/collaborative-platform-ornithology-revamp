@@ -1,4 +1,4 @@
-/*Bloc home*/
+/*Block home*/
 .divLink {
 	height: 450px;
 	border: 1px solid black;
@@ -14,11 +14,6 @@
 	padding-top: 15px;
 }
 
-/*.item img.img-responsive {
-	padding: 0px;
-	margin: 0px;
-}*/
-
 .blocTextHome {
 	text-align: center;
 	background-color: #F4F4F4;
@@ -26,16 +21,6 @@
 	opacity: 0.9;
 	padding: 0px 45px 0px 45px;
 	line-height: 35px;
-}
-
-#mainBlocHome {
-	padding: 75px 25px 75px 25px;
-	background-image: url( "http://assets.fhuszti.tech/nao/home/home-bg.png" );
-	background-size: cover;
-}
-
-#slider {
-	padding: 0px;
 }
 
 .icon {
@@ -68,7 +53,7 @@
 }
 
 #mainContent {
-	background-image: url('http://assets.fhuszti.tech/nao/home/home-bg.png');
+	background-image: url('http://fhuszti.com.s3.amazonaws.com/nao/home/home-bg.png');
 	padding-top: 30px;
 	text-align: center;
 }
@@ -107,9 +92,6 @@
 
 
 
-
-
-
 @media all and (max-width: 1114px) {
 	#mainContent .home-block-content {
 		min-height: 300px;
@@ -119,7 +101,7 @@
 	#mainContent .home-block-content {
 		min-height: 270px;
 	}
-	#mainContent #home_block-profile .home-block-content {
+	#home_block-profile .home-block-content {
 		min-height: auto;
 	}
 }

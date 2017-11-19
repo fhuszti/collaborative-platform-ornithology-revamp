@@ -8,7 +8,6 @@ use FOS\UserBundle\Model\User as FOSUser;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use AppBundle\Entity\Image;
 use AppBundle\Entity\Observation;
 
 /**
@@ -62,16 +61,10 @@ class User extends FOSUser
     private $surname;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Observation", mappedBy="user", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Observation", mappedBy="user", cascade={"persist", "remove"})
      * @Assert\Valid()
      */
     private $observations;
-
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="user", cascade={"persist"})
-     * @Assert\Valid()
-     */
-    private $images;
 
 
 
@@ -84,7 +77,6 @@ class User extends FOSUser
         parent::__construct();
 
         $this->observations = new ArrayCollection();
-        $this->images = new ArrayCollection();
     }
 
 
@@ -176,8 +168,6 @@ class User extends FOSUser
     {
         $this->observations[] = $observation;
 
-        $observation->setUser($this);
-
         return $this;
     }
 
@@ -200,43 +190,6 @@ class User extends FOSUser
     {
         return $this->observations;
     }
-
-    /**
-     * Add an Image
-     *
-     * @param \AppBundle\Entity\Image $image
-     *
-     * @return Image
-     */
-    public function addImage(Image $image)
-    {
-        $this->images[] = $image;
-
-        $image->setUser($this);
-
-        return $this;
-    }
-
-    /**
-     * Remove an Image
-     *
-     * @param \AppBundle\Entity\Image $image
-     */
-    public function removeImage(Image $image)
-    {
-        $this->images->removeElement($image);
-    }
-
-    /**
-     * Get Images
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getImages()
-    {
-        return $this->images;
-    }
-
 
 
 

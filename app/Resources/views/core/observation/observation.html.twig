@@ -1,0 +1,104 @@
+
+{% extends 'layout.html.twig' %}
+{% set homepage = true %}
+{% import "macros/_macroMetaTags.html.twig" as macroMetaTags %}
+
+{% set meta_title %}{{'core.observation.meta_title'|trans}}{% endset %}
+
+{% set meta_description %}
+{{'core.observation.meta_description'|trans}}
+{% endset %}
+
+{% set meta_url %}
+{{ url('core_observation') }}
+{% endset %}
+
+{% block title %}
+    {{ meta_title }} - {{ parent() }}
+{% endblock %}
+
+{% block meta %}
+    {{ macroMetaTags.meta_tags(meta_title, meta_description, meta_url ) }}
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+    {% stylesheets filter='cssrewrite, ?scssphp'
+        'bundles/app/css/observation.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body  %}
+<div class="col-xs-12 nao_title">
+    <div class="col-xs-10 col-sm-8 col-md-6">
+        <h1>{{'core.observation.title'|trans}}</h1>
+    </div>
+
+    <div class="hidden-xs col-sm-2 nao_title-icon">
+        {% image 'http://fhuszti.com.s3.amazonaws.com/nao/second-menu/observation.png' %}
+            <img src="{{ asset_url }}" alt="" />
+        {% endimage %}
+    </div>
+</div>
+
+<div class="col-xs-12" id="observation_content">
+    {% for flashMessage in app.session.flashbag.get('error') if flashMessage is not empty %}
+        <div class="col-xs-12 alert alert-danger hidden">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('success') if flashMessage is not empty %}
+        <div class="col-xs-12 alert alert-success hidden">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+    {% image 'http://fhuszti.com.s3.amazonaws.com/nao/separator-angle.png' %}
+        <img class="separator-angle hidden" src="{{ asset_url }}" alt="" />
+    {% endimage %}
+
+    <p class="margin-top-element hidden">
+        {{'core.observation.localisation.label'|trans}}<br />
+        <span id="observation_localisation-helper">
+            {{'core.observation.localisation.helper'|trans|nl2br}}
+        </span>
+    </p>
+
+    <div class="row hidden" id="gmaps_canvas">
+    </div>
+    
+    <div class="col-xs-12 hidden" id="observationForm-container" data-url="{{ path('obs_add') }}">
+    </div>
+
+    <div class="hidden" id="observation_confirmButtonDiv">
+        <div>
+            {% image 'http://fhuszti.com.s3.amazonaws.com/nao/separator-line.png' %}
+                <img class="separator-line" src="{{ asset_url }}" alt="" />
+            {% endimage %}
+        </div>
+
+        <button type="submit" class="btn btn-info btn-lg" form="observationForm">
+            {{'core.observation.confirm'|trans}}
+        </button>
+    </div>
+
+    <div class="loader">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQU7F5LE2WL4xxEpeUysxGqriN_RM36G0&language=fr&region=FR"></script>
+
+    {% javascripts filter='?jsqueeze'
+        'bundles/app/js/observation.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

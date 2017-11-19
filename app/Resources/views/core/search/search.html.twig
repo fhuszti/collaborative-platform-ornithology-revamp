@@ -1,0 +1,76 @@
+{% extends 'layout.html.twig' %}
+{% set searchPage = true %}
+{% import "macros/_macroMetaTags.html.twig" as macroMetaTags %}
+
+{% set meta_title %}{{'core.search.meta_title'|trans}}{% endset %}
+
+{% set meta_description %}
+{{'core.search.meta_description'|trans}}
+{% endset %}
+
+{% set meta_url %}
+{{ url('core_search') }}
+{% endset %}
+
+{% block title %}
+    {{ meta_title }} - {{ parent() }}
+{% endblock %}
+
+{% block meta %}
+    {{ macroMetaTags.meta_tags(meta_title, meta_description, meta_url ) }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+
+    {% stylesheets filter='cssrewrite, ?scssphp'
+    	'bundles/app/css/search.css'
+    	'bundles/app/css/bird.css'
+        'bundles/app/css/jquery.bsPhotoGallery.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+	<div class="col-xs-12 nao_title">
+		<div class="col-xs-10 col-sm-6">
+			<h1>{{'core.search.title'|trans}}</h1>
+		</div>
+
+		<div class="hidden-xs col-sm-2 nao_title-icon">
+			{% image 'http://fhuszti.com.s3.amazonaws.com/nao/second-menu/search.png' %}
+				<img src="{{ asset_url }}" alt="" />
+			{% endimage %}
+		</div>
+	</div>
+
+	<div class="col-xs-12" id="search_content">
+		<input type="text" class="input-lg form-control hidden" placeholder="Recherchez un nom d'oiseau... (3 caractères minimum)" autocomplete="off" maxlength="250" autofocus />
+
+		<div class="col-xs-12 hidden" id="search_results" data-url="{{ path('core_ajax_search') }}" data-home="{{ path('core_home') }}">
+		</div>
+
+		<p class="text-center hidden" id="empty_results">
+			{{'core.search.no_result'|trans}}
+		</p>
+
+		{% include 'core/search/modal/bird-modal.html.twig' %}
+
+	    <div class="loader">
+	        <div class="line"></div>
+	        <div class="line"></div>
+	        <div class="line"></div>
+	        <div class="line"></div>
+	    </div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% javascripts filter='?jsqueeze'
+        'bundles/app/js/search.js'
+        'bundles/app/js/jquery.bsPhotoGallery.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "@FOSUser/layout.html.twig" %}
+{% import "macros/_macroMetaTags.html.twig" as macroMetaTags %}
+
+{% set meta_title %}{{'core.register.meta_title'|trans}}{% endset %}
+
+{% set meta_description %}
+{{'core.register.meta_description'|trans}}
+{% endset %}
+
+{% set meta_url %}
+{{ url('fos_user_registration_register') }}
+{% endset %}
+
+{% block title %}
+    {{ meta_title }} - {{ parent() }}
+{% endblock %}
+
+{% block meta %}
+    {{ macroMetaTags.meta_tags(meta_title, meta_description, meta_url ) }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% stylesheets filter='cssrewrite, ?scssphp'
+        'bundles/app/css/register.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+    {% endstylesheets %}
+{% endblock %}
+
+{% block fos_user_content %}
+	{% include "@FOSUser/Registration/confirmed_content.html.twig" %}
+{% endblock fos_user_content %}

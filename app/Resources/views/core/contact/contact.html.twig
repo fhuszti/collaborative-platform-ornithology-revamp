@@ -1,0 +1,70 @@
+{% extends 'layout.html.twig' %}
+{% set contactPage = true %}
+{% import "macros/_macroMetaTags.html.twig" as macroMetaTags %}
+
+{% set meta_title %}{{'core.contact.meta_title'|trans}}{% endset %}
+
+{% set meta_description %}
+{{'core.contact.meta_description'|trans}}
+{% endset %}
+
+{% set meta_url %}
+{{ url('core_contact') }}
+{% endset %}
+
+{% block title %}
+    {{ meta_title }} - {{ parent() }}
+{% endblock %}
+
+{% block meta %}
+    {{ macroMetaTags.meta_tags(meta_title, meta_description, meta_url ) }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+    {% stylesheets filter='cssrewrite, ?scssphp'
+        'bundles/app/css/contact.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body  %}
+<div class="col-xs-12 nao_title">
+	<div class="col-xs-10 col-sm-8 col-md-6">
+		<h1>{{'core.contact.title'|trans}}</h1>
+	</div>
+
+	<div class="hidden-xs col-sm-2 nao_title-icon">
+		{% image 'http://fhuszti.com.s3.amazonaws.com/nao/second-menu/contact.png' %}
+			<img src="{{ asset_url }}" alt="" />
+		{% endimage %}
+	</div>
+</div>
+
+<div class="col-xs-12" id="contact_form">
+	{% include 'core/contact/blocks/form.html.twig' %}
+
+	<div class="col-xs-12 text-center" id="submitButtonDiv">
+        <button type="submit" form="contactForm" class="btn btn-info btn-lg">
+            {{ 'core.contact.confirm'|trans }}
+        </button>
+
+        {% image 'http://fhuszti.com.s3.amazonaws.com/nao/pelican.png' %}
+            <img id="pelican" class="hidden-xs" src="{{ asset_url }}" alt="" />
+        {% endimage %}
+    </div>
+</div>
+
+<div class="col-xs-12" id="contact_infos">
+	{% include 'core/contact/blocks/infos.html.twig' %}
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% javascripts filter='?jsqueeze'
+        'bundles/app/js/contact.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

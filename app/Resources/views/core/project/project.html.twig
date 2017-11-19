@@ -1,0 +1,97 @@
+{% extends 'layout.html.twig' %}
+{% set projectPage = true %}
+{% import "macros/_macroMetaTags.html.twig" as macroMetaTags %}
+
+{% set meta_title %}{{'core.project.meta_title'|trans}}{% endset %}
+
+{% set meta_description %}
+{{'core.project.meta_description'|trans}}
+{% endset %}
+
+{% set meta_url %}
+{{ url('core_project') }}
+{% endset %}
+
+{% block title %}
+    {{ meta_title }} - {{ parent() }}
+{% endblock %}
+
+{% block meta %}
+    {{ macroMetaTags.meta_tags(meta_title, meta_description, meta_url ) }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+    {% stylesheets filter='cssrewrite, ?scssphp'
+        'bundles/app/css/project.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body  %}
+<div class="col-xs-12 nao_title">
+	<div class="col-xs-10 col-sm-8 col-md-6">
+		<h1>{{'core.project.title'|trans}}</h1>
+	</div>
+
+	<div class="hidden-xs col-sm-2 nao_title-icon">
+		{% image 'http://fhuszti.com.s3.amazonaws.com/nao/second-menu/project.png' %}
+			<img src="{{ asset_url }}" alt="" />
+		{% endimage %}
+	</div>
+</div>
+
+<div class="col-xs-12" id="project_content">
+	<div class="col-xs-12">
+        {% image 'http://fhuszti.com.s3.amazonaws.com/nao/separator-angle.png' %}
+            <img class="separator-angle" src="{{ asset_url }}" alt="" />
+        {% endimage %}
+        <h3>{{'core.project.presentation.title'|trans}}</h3>
+
+        <p>
+            {{'core.project.presentation.content'|trans|nl2br}}
+        </p>
+    </div>
+
+    <div class="col-xs-12">
+        {% image 'http://fhuszti.com.s3.amazonaws.com/nao/separator-angle.png' %}
+            <img class="separator-angle" src="{{ asset_url }}" alt="" />
+        {% endimage %}
+        <h3>{{'core.project.whom.title'|trans}}</h3>
+
+        <p>
+            {{'core.project.whom.content'|trans|nl2br}}
+        </p>
+
+        <div class="col-xs-12 text-center">
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <a class="btn btn-info" href="{{ path('fos_user_profile_show') }}" title="{{ 'core.project.whom.btn.profile.title'|trans }}">
+                    {{ 'core.project.whom.btn.profile.value'|trans }}
+                </a>
+            {% else %}
+                <a class="btn btn-info" href="{{ path('fos_user_registration_register') }}" title="{{ 'core.project.whom.btn.register.title'|trans }}">
+                    {{ 'core.project.whom.btn.register.value'|trans }}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="col-xs-12">
+        {% image 'http://fhuszti.com.s3.amazonaws.com/nao/separator-angle.png' %}
+            <img class="separator-angle" src="{{ asset_url }}" alt="" />
+        {% endimage %}
+        <h3>{{'core.project.how.title'|trans}}</h3>
+
+        <p>
+            {{'core.project.how.content'|trans|nl2br}}
+        </p>
+
+        <div class="col-xs-12 text-center">
+            <a class="btn btn-info" href="{{ path('core_observation') }}" title="{{ 'core.project.how.btn.observation.title'|trans }}">
+                {{ 'core.project.how.btn.observation.value'|trans }}
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

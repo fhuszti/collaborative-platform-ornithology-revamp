@@ -1,5 +1,21 @@
 $(function() {
 	
+	//show the loading screen and hide the content
+	function startContentLoading(modal, newHidden = []) {
+		modal.children('.hidden').removeClass('hidden');
+		newHidden.forEach(function(elmt) {
+			elmt.addClass('hidden');
+		});
+	}
+
+	//hide the loading screen and show the content
+	function endContentLoading(modal) {
+		modal.children('.hidden').removeClass('hidden');
+		modal.children('.loader').addClass('hidden');
+	}
+
+
+
 	//Manage AJAX for modal display with Forgotten Password feature
 	function modalOpening() {
 		var modal_body = $('#login_forgotten-pass-modal-body'),
@@ -7,25 +23,13 @@ $(function() {
 
 		//when clicking on the Forgotten Password link
 		$('#login_forgotten-link').on('click', function(e){
+			//start loading animation
+			startContentLoading( $('#login_forgotten-pass-modal').find('.modal-content') );
 			
 			//just load the reset request form into the modal body
 			modal_body.load($(e.target).data('action'), function() {
-				
-				//add a submit event to the modal form that was just loaded inside the body
-				form.on('submit', function(e){
-					e.preventDefault();
-
-					//we change the submit button to loading state
-					$('#login_forgotten-pass-modal-button').button('loading');
-					$('#login_forgotten-pass-modal-button>span:first-child').addClass('btn-loading');
-
-					var data = new FormData($(e.target));
-
-					//AJAX call using POST
-					$.post( $(e.target).attr('action'), data, function( response ) {
-					  	modal_body.html( response );
-					});
-				});
+				//hide the loading screen and show the content
+	    		endContentLoading( $('#login_forgotten-pass-modal').find('.modal-content') );
 			});
 		});
 	}

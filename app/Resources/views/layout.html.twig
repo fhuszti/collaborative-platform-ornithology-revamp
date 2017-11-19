@@ -14,7 +14,8 @@
         {% block meta %}
         {% endblock %}
 
-        <link rel="shortcut icon" href="http://assets.fhuszti.tech/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="http://fhuszti.com.s3.amazonaws.com/nao/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="http://fhuszti.com.s3.amazonaws.com/nao/apple-touch-icon.png">
 
         {% block stylesheets %}
             {% stylesheets filter='cssrewrite, ?scssphp'
@@ -63,8 +64,6 @@
                 '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js' %}
                 <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
-        {% endblock %}
-        {% block script %}
         {% endblock %}
     </body>
 </html>

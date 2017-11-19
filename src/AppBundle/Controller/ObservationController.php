@@ -4,88 +4,85 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use AppBundle\Form\ObservationType;
-use AppBundle\Services\Optimizer;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\Session;
-use AppBundle\Entity\Observation;
-use AppBundle\Entity\Bird;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Component\Form\FormBuilder;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Serializer\Serializer; 
-use Symfony\Component\Serializer\Encoder\XmlEncoder; 
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use AppBundle\Service\Form\FormManager;
+use AppBundle\Form\Type\ObservationType;
+use AppBundle\Entity\Observation;
 
 class ObservationController extends Controller
 {
     /**
-     * @Route("/observation", name="app_observation")
-	 * @Method({"GET", "POST"})
+     * @Route("/observation/{id}", requirements={"id" = "\d+"}, name="obs_details")
+     * @Method("GET")
      */
-    public function formAction(Request $request, Optimizer $optimizer)
+    public function observationAction(Observation $observation)
     {
-		$observation = new Observation();
-		$formBuilder = $this->get('form.factory')->create(ObservationType::class, $observation);
-
-		if ($request->isMethod('POST')) {
-
-
-			$formBuilder->handleRequest($request);
-
-
-			$image = $observation->getImage()->getFile();
-			if (!$formBuilder->isValid()) {
-				return new JsonResponse(array(
-					'result' => 0,
-					'data' => $this->getErrorMessages($formBuilder),
-					'message' => 'Invalid form',  
-				));
-
-			} else {
-
-				if (Null != $image) {
-					$observation->getImage()->upload();
-					$optimizer->optimize($observation);      
-				}
-				$observation->setSeen(0);
-				$em = $this->getDoctrine()->getManager();
-				$em->persist($observation);
-				$em->flush();
-				
-				return new JsonResponse(array('status'=>'success'));
-			}				  
-
-		}
-		
-		return $this->render('observation/observation.html.twig', array(
-		'form' => $formBuilder->createView()
-		));
+        return $this->render('@FOSUser/Profile/blocks/observations/observation.html.twig', array(
+            'observation' => $observation
+        ));
     }
 
-   function getErrorMessages(\Symfony\Component\Form\Form $formBuilder) 
-    {
-        $errors = array();
-        foreach ($formBuilder->getErrors() as $key => $error) {
-            $errors[] = $error->getMessage();
-        }
 
-        foreach ($formBuilder->all() as $child) {
-            if (!$child->isValid()) {
-                $errors[$child->getName()] = $this->getErrorMessages($child);
-            }
-        }
 
-        return $errors;
-    }
 
 
     /**
-     * @Route("/validate/{id}", requirements={"id" = "\d+"}, name="admin_obs_validate")
+     * @Route("/observation/ajouter", name="obs_add")
+     * @Method({"GET", "POST"})
+     */
+    public function addObservationAction(FormManager $fm, Request $request, SessionInterface $session)
+    {
+        $observation = new Observation();
+
+        //generate the add observation form
+        $addObservationForm = $fm->generateForm('addObservationForm', ObservationType::class, $observation, $request);
+        
+
+        //create a unique success message
+        $successMessage = 'Observation ajoutée avec succès !';
+        //and a unique fields list
+        $fields = array('bird', 'date', 'comment', 'image', 'longitude', 'lattitude');
+        
+        //manage everything for the add observation form submission
+        $addObservationResponse = $fm->submitSinglePersistType( $addObservationForm, $observation, $fields, $session, $successMessage );
+        
+        //if response is true, we good to go
+        if ( $addObservationResponse )
+            return $this->redirectToRoute('core_observation');
+
+
+        $action = $this->generateUrl('obs_add');
+
+        
+        return $this->render('core/observation/form/observation-type.html.twig', array(
+            'form' => $addObservationForm->createView(),
+            'action' => $action
+        ));
+    }
+
+    /**
+     * @Route("/admin/observation/delete/{id}", requirements={"id" = "\d+"}, name="admin_obs_delete")
+     * @Method("GET")
+     */
+    public function deleteObservationAction(EntityManagerInterface $em, Observation $obs, SessionInterface $session)
+    {
+        $em->remove($obs);
+        $em->flush();
+
+        $session->getFlashbag()->add('success', 'Observation supprimée avec succès !');
+
+        return $this->redirectToRoute('admin_home');
+    }
+
+
+
+
+
+    /**
+     * @Route("/admin/obs/validate/{id}", requirements={"id" = "\d+"}, name="admin_obs_validate")
      * @Method("GET")
      */
     public function obsValidateAction(EntityManagerInterface $em, Observation $obs)
@@ -103,7 +100,7 @@ class ObservationController extends Controller
 
 
     /**
-     * @Route("/await/{id}", requirements={"id" = "\d+"}, name="admin_obs_await")
+     * @Route("/admin/obs/await/{id}", requirements={"id" = "\d+"}, name="admin_obs_await")
      * @Method("GET")
      */
     public function obsAwaitAction(EntityManagerInterface $em, Observation $obs)
@@ -121,7 +118,7 @@ class ObservationController extends Controller
 
 
     /**
-     * @Route("/refuse/{id}", requirements={"id" = "\d+"}, name="admin_obs_refuse")
+     * @Route("/admin/obs/refuse/{id}", requirements={"id" = "\d+"}, name="admin_obs_refuse")
      * @Method("GET")
      */
     public function obsRefuseAction(EntityManagerInterface $em, Observation $obs)

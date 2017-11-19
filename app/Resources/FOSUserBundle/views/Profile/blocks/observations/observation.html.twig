@@ -1,0 +1,30 @@
+<div class="row">
+	{% if observation.image is not empty %}
+		<div class="col-xs-12 col-sm-5 obs-modal-left-panel">
+			<img src="{{ asset('uploads/images/' ~ observation.image.fileName) }}" alt="{{ observation.bird.lbNom }}">
+		</div>
+
+		<div class="col-xs-12 col-sm-7" id="gmaps_canvas" data-lattitude="{{ observation.lattitude }}" data-longitude="{{ observation.longitude }}">
+		</div>
+	{% else %}
+		<div class="col-xs-12" id="gmaps_canvas" data-lattitude="{{ observation.lattitude }}" data-longitude="{{ observation.longitude }}">
+		</div>
+	{% endif %}
+</div>
+
+<div class="row obs-modal-infos">
+	<hr />
+	<ul>
+		<li><em>{% if observation.bird.nomVern is not empty %}({{ observation.bird.nomVern }}) {% endif %}{{ observation.bird.lbNom }}</em></li>
+		<li>Observé le {{ observation.date|date('d/m/Y') }}</li>
+	</ul>
+</div>
+
+{% if observation.comment is not empty %}
+	<div class="row">
+		<div class="col-xs-12 obs-modal-comment-panel">
+			<hr />
+			{{ observation.comment }}
+		</div>
+	</div>
+{% endif %}

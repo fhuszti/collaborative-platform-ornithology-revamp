@@ -88,13 +88,61 @@
           }        
           html += '</div>';
         
-          if(settings.showControl){
+      if(settings.showControl){
             html += '<a class="bsp-controls next" data-bsp-id="'+clicked.ulId+'" href="'+ (clicked.nextImg) + '"><span class="' + settings.iconRight + '"></span></a>';
             html += '<a class="bsp-controls previous" data-bsp-id="'+clicked.ulId+'" href="' + (clicked.prevImg) + '"><span class="' + settings.iconLeft + '"></span></a>';
           }
           $('#bsPhotoGalleryModal .modal-body').html(html);
+
+          manageModalSize(true);
+
           $('.bsp-close').on('click', closeModal);
           showHideControls();
+      }
+
+      function manageModalSize(modal_opening) {
+          var dialog = $('#bsPhotoGalleryModal .modal-dialog'),
+              img = $('#bsPhotoGalleryModal .modal-body img'),
+              imgDOM = img.get(0); //use "get(0)" to get DOM elmt within jquery elmt
+
+          //reset .modal-dialog size to original
+          if (dialog.hasClass('modal-lg')) {
+            if ( $(window).width() > 900 )
+                dialog.width('900px');
+            else {
+                dialog.width('auto');
+                dialog.css('margin-left', 'auto');
+                dialog.css('margin-right', 'auto');
+            }
+          }
+          else {
+            if ( $(window).width() > 600 )
+                dialog.width('600px');
+            else {
+                dialog.width('auto');
+                dialog.css('margin-left', 'auto');
+                dialog.css('margin-right', 'auto');
+            }
+          }
+
+          //set .modal-dialog width to img width
+          if ( imgDOM.naturalHeight > imgDOM.naturalWidth ) {
+            img.removeClass('img-width').addClass('img-height');
+            
+            if (!modal_opening) {
+              dialog.width(img.outerWidth());
+            }
+          }
+          else if ( imgDOM.naturalHeight == imgDOM.naturalWidth ) {
+            img.removeClass('img-height').removeClass('img-width');
+            
+            if (!modal_opening) {
+              dialog.width(img.outerWidth());
+            }
+          }
+          else {
+            img.removeClass('img-height').addClass('img-width');
+          }
       }
 
       function closeModal(){
@@ -118,6 +166,8 @@
           var alt =  typeof theImg.attr('alt') == 'string' ? theImg.attr('alt') : null;
            
           $('#bsPhotoGalleryModal .modal-body img').attr('src', src);
+          manageModalSize(false);
+
           var txt = '';
           if(alt !== null){
             txt += '<h6>'+alt+'</h6>';
@@ -138,7 +188,7 @@
               $(this).attr('href', clicked.nextImg);
               $('a.previous').attr('href', clicked.prevImg);
           }
-    
+
         showHideControls();
         return false;
       }
@@ -179,7 +229,7 @@
              break;
              //medium
              case "col-md-1":
-                  if($(el).next('li.clearfix').length === 0){
+                  if($(el).next('li.clearfix').length == 0){
                     $(el).after('<li class="clearfix visible-md-block"></li>');
                   }
               break;
@@ -206,7 +256,7 @@
              break;
              //small
              case "col-sm-1":
-                  if($(el).next('li.clearfix').length === 0){
+                  if($(el).next('li.clearfix').length == 0){
                     $(el).after('<li class="clearfix visible-sm-block"></li>');
                   }
               break;
@@ -233,7 +283,7 @@
              break;
              //x-small
              case "col-xs-1":
-                  if($(el).next('li.clearfix').length === 0){
+                  if($(el).next('li.clearfix').length == 0){
                     $(el).after('<li class="clearfix visible-xs-block"></li>');
                   }
               break;

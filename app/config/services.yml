@@ -53,3 +53,20 @@ services:
     UserBundle\Form\Type\EditPasswordType:
         tags:
             - { name: form.type, alias: core_user_password }
+
+    # services that need string arguments
+    AppBundle\Service\File\FileUploader:
+        arguments:
+            $imagesTargetDir: '%kernel.project_dir%/web/uploads/images'
+            $tinypngSecretKey: '%tinypng_secret_key%'
+
+    # event listeners
+    AppBundle\EventListener\FilesUploadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: postLoad }
+            - { name: doctrine.event_listener, event: postRemove }
+
+    AppBundle\EventListener\AddObservationListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }

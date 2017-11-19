@@ -99,7 +99,6 @@ class UserEditType extends AbstractType
                         'class' => 'col-sm-4 control-label'
                     ),
                     'attr' => array(
-                        'class' => 'input-lg',
                         'aria-required' => true
                     ),
                 ));

@@ -1,0 +1,33 @@
+<div class="modal fade" id="admin_user-edit-modal">
+  	<div class="modal-dialog">
+	    <div class="modal-content">
+	      	<div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">x</button>
+		        
+		        <h4 class="modal-title">
+		        	{{ 'core.admin.edit.title'|trans }}
+		        </h4>
+		     </div>
+
+	      	<div class="modal-body" id="admin_user-edit-modal-body">
+	      	</div>
+
+		    <div class="loader">
+		        <div class="line"></div>
+		        <div class="line"></div>
+		        <div class="line"></div>
+		        <div class="line"></div>
+		    </div>
+
+	      	<div class="modal-footer">
+		        <button type="submit" class="btn btn-info" form="user-edit-form" id="admin_user-edit-confirm">
+		        	{{ 'core.admin.confirm'|trans }}
+		        </a>
+
+		        <button class="btn btn-default" data-dismiss="modal">
+		        	{{ 'core.admin.abort'|trans }}
+		        </button>
+		     </div>
+	    </div>
+  	</div>
+</div>

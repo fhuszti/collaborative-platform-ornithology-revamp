@@ -30,33 +30,6 @@ core:
             link: Se déconnecter
             value: Déconnexion
 
-    find:
-        input_find: Tapez le nom de l'oiseau
-        button_find: Rechercher
-        msg:
-            nofind: Aucuns résultats ne correspond à cette recherche
-            error: Une erreur est survenue, veuillez réessayer
-    
-    bird:
-        desc:
-            family: Famille
-            rang: Rang
-            name_latin: Nom latin
-            full_name: Nom complet
-            common_name: Nom(s) Commun(s)
-        observation:
-            title: OBSERVATIONS
-        photo:
-            title: PHOTOS
-    second-menu:
-        observation: Laisser une observation
-        search: Rechercher un oiseau
-        contact: Nous contacter
-        register: S'inscrire
-        profile: Voir son profil
-        login: Se connecter
-        logout: Se déconnecter
-
     footer:
         left_links:
             search:
@@ -68,7 +41,7 @@ core:
             project:
                 link: Participer au projet
                 title: Participer au projet
-        copyright: © 2017 nosamislesoiseaux.fr
+        copyright: nosamislesoiseaux.fr
         right_links:
             legal:
                 link: Mentions légales
@@ -79,14 +52,7 @@ core:
             agency:
                 link: WebAgency
                 title: Agence WebAgency
-    contact:
-        form:
-            name: Nom
-            mail: Email
-            subject: Objet
-            message: Message
-            send: Envoyer
-
+    
     second-menu:
         observation: Laisser une observation
         search: Rechercher un oiseau
@@ -97,47 +63,121 @@ core:
         logout: Se déconnecter
 
     home:
-        block_obs:
+        meta_title: Accueil
+        meta_description: Bienvenue sur la plateforme collaborative de Nos Amis les oiseaux !
+        observation:
             title: J'ai observé un oiseau
             text: Vous pouvez partager ici l'endroit où vous l'avez vu, vos observations, ainsi que vos photos pour nous aider à avancer notre programme de recherche !
-        block_project:
+        project:
             title: Le projet
             text: La présentation en détails de notre projet. Pour qui ? Où ? Pourquoi ? Comment participer ?
-        block_search:
+        search:
             title: Quel est cet oiseau ?
             text: Vous recherchez des informations sur un oiseau ? Notre base de donnée est par ici !
-        block_contact:
+        contact:
             title: Nous contacter
             text: Vous avez besoin d'infos, vous avez des remarques ou tout simplement envie d'échanger ? N'hésitez pas à nous contacter !
-        block_profile:
+        profile:
             title: Mon Espace
             text: Retrouvez vos informations, ainsi que toutes vos observations et photos. C'est ici que vous pouvez changer votre adresse email et votre mot de passe.
-        block_register:
+        register:
             title: M'inscrire
             text: Rejoignez-nous en deux clics et participez à notre plateforme collaborative !
-        block_login:
+        login:
             title: Me connecter
             text: Connectez-vous afin d'accéder à toutes les fonctionnalités de la plateforme.
-        p5: Retrouvez toutes vos informations, l'historique de vos observations, vos photos, et vos oiseaux favoris
+    
+    project:
+        meta_title: Le projet
+        meta_description: Qui sommes-nous et quel est l'objectif de cette plateforme ? Les réponses ici !
+        title: LE PROJET
+        presentation:
+            title: PRÉSENTATION
+            content: |
+                Nos Amis les Oiseaux lance un projet de recherche et de partage de données sur les oiseaux qui collectera les observations, photos et localisation des oiseaux observés par les participants.
 
-    admin:
-        title: Administration
-        users: Utilisateurs
-        observations: Observations
-        no_user: Aucun utilisateur n'existe pour le moment.
-        close: Fermer
-        confirm: Confirmer
-        abort: Annuler
-        delete:
-            title: Supprimer l'utilisateur
-            question: |
-                Êtes-vous certain(e) de vouloir supprimer définitivement cet utilisateur ?
-                Cette action est irréversible.
-        edit:
-            title: Modifier l'utilisateur
-            info: Ne remplissez pas ces champs si vous ne souhaitez pas modifier le mot de passe actuel de l'utilisateur.
+                Ces informations serviront à un programme de recherche visant à étudier les effets du climat, de l'urbanisation et de l'agriculture sur la bio-diversité.
+
+                Cette plateforme existe afin que vous, utilisateurs, puissiez rentrer vos observations faites sur le terrain, mais propose aussi des informations sur des centaines d'espèces d'oiseaux via sa grande banque de données.
+        whom:
+            title: POUR QUI ?
+            content: |
+                Ce projet s'adresse à tous celles et ceux qui souhaitent y participer, qu'ils soient professionnels ou amateurs, ainsi qu'à tous ceux qui souhaitent se renseigner sur les oiseaux qui les entourent.
+
+                Pour participer, une simple inscription suffit, alors n'hésitez pas à nous rejoindre !
+            btn:
+                profile:
+                    value: VOIR MON COMPTE
+                    title: Aller à votre page de profil
+                register:
+                    value: CRÉER MON COMPTE
+                    title: Accéder à la page d'inscription
+        how:
+            title: COMMENT PARTICIPER ?
+            content: |
+                C'est simple ! Vous observez un oiseau, puis vous rentrez la ou les photos prise(s), vos observations et la localisation exacte de façon aisée via votre ordinateur ou votre smartphone sur la page d'Observation de ce site.
+
+                Des professionnels valideront les informations rentrées, puis l'observation apparaîtra sur la fiche de l'oiseau concerné.
+                Vous pouvez ensuite retrouver l'historique de vos observations sur votre page de Profil dédiée.
+
+                Lancez-vous !
+            btn:
+                observation:
+                    value: PARTAGER UNE OBSERVATION
+                    title: Accédez à la page d'Observation
+
+    observation:
+        meta_title: Observation
+        meta_description: Ajoutez les informations récoltées en observant un oiseau dans la nature et participez au programme de recherche.
+        title: OBSERVATION
+        localisation:
+            label: LOCALISATION
+            helper: |
+                Placez le marqueur sur la carte afin de localiser le lieu de l'observation.
+                Si votre acceptez (ou avez déjà accepté par le passé) la géolocalisation Google, le marqueur sera automatiquement placé sur votre position actuelle.
+                Dans le cas contraire, le marqueur sera placé au centre de la France par défaut.
+        confirm: SOUMETTRE
+
+    contact:
+        meta_title: Contact
+        meta_description: Retrouvez un formulaire et les informations nécessaires afin de contacter l'association Nos Amis les Oiseaux.
+        title: CONTACTEZ-NOUS
+        confirm: ENVOYER
+        address: |
+            ASSOCIATION NOS AMIS LES OISEAUX
+            156 BOULEVARD BONNE NOUVELLE
+            75 010 PARIS CEDEX
+
+    search:
+        meta_title: Recherche
+        meta_description: Recherchez la fiche d'un oiseau parmi plus de 3000 dans la base de donnée TAXREF.
+        title: RECHERCHE
+        no_result: Aucun résultat
+    
+    bird:
+        close: Revenir à la recherche
+        infos:
+            title: INFORMATIONS
+            family: Famille
+            rank: Rang
+            es: Espèce
+            sses: Sous-espèce
+            latin: Nom latin
+            full: Nom complet
+            common: Nom(s) commun(s)
+        gallery:
+            title: GALERIE
+
+    register:
+        meta_title: Inscription
+        meta_description: Inscrivez-vous afin de participer au programme de recherche orchestré par Nos Amis les Oiseaux.
+        title: Inscription
+        submit: Créer mon compte
+        congrats: Vous êtes désormais inscrit à la plateforme collaborative mise en place par Nos Amis les Oiseaux !
 
     login:
+        meta_title: Connexion
+        meta_description: Connectez-vous et participez au programme de recherche orchestré par Nos Amis les Oiseaux.
         title: Connexion
         register_button: Créer un compte
         email:
@@ -154,11 +194,6 @@ core:
             content: Nous allons vous envoyer un email afin de confirmer votre identité, puis vous pourrez créer un nouveau mot de passe.
             button: Valider
 
-    observation:
-        locationTitle: LOCALITE * Déplacer le marqueur sur la carte pour localiser le lieu de l'observation
-        buttonGeolocation: me geolocaliser
-        buttonMap: localiser sur une carte
-
     reset_pass:
         email:
             subject: 'Bienvenue %username% !'
@@ -174,15 +209,14 @@ core:
         check_email: |
             Un e-mail a été envoyé. Il contient un lien sur lequel il vous faudra cliquer pour réinitialiser votre mot de passe.
 
-            Si vous ne recevez pas un email, vérifiez votre dossier spam ou essayez à nouveau.
-
-    register:
-        title: Inscription
-        submit: Créer mon compte
+            Si vous ne recevez pas d'email, vérifiez votre dossier spam ou essayez à nouveau.
+        back: Retour à la page de Connexion
 
     profile:
+        meta_title: Mon Espace
+        meta_description: Retrouvez vos informations, les observations soumises et leur statut ainsi qu'une galerie des photos partagées sur votre page personnelle.
         title: Mon Espace
-        block1:
+        infos:
             header: Profil
             content:
                 title: Informations
@@ -191,33 +225,51 @@ core:
                 email: Adresse email
                 password: Mot de passe
                 edit: Modifier
-        block2:
+            modal: 
+                title: Modifier les informations
+                footer: 
+                    confirm: Modifier
+                    cancel: Annuler
+        observations:
             header: Observations
             content:
-                tab1: Validées
-                tab2: En attente
-                tab3: Refusées
+                valid: Validées
+                waiting: En attente
+                refused: Refusées
                 button: En voir plus
                 img_icon: Cette observation contient une photo
-                empty:
-                    observation:
-                        sentence: Aucune observation ici pour le moment.
-                        link: 
-                            title: Vers la page d'Observation
-                            value: Soumettez-en une !
-                    photo:
-                        sentence: Aucune photo ici pour le moment.
-                        link: 
-                            title: Vers la page d'Observation
-                            value: Soumettez une observation et une photo !
-        block3:
-            header: Photos
-            content: 
-        modal:
-            email:
-                title: Changer d'adresse email
-            password:
-                title: Changer de mot de passe
+            empty:
+                sentence: Aucune observation ici pour le moment.
+                link: 
+                    title: Vers la page d'Observation
+                    value: Soumettez-en une !
+            modal:
+                title: Observation
+                close: Fermer
+        gallery:
+            header: Galerie
+            empty:
+                sentence: Aucune photo ici pour le moment.
+                link: 
+                    title: Vers la page d'Observation
+                    value: Soumettez une observation et une photo !
+
+    admin:
+        title: Administration
+        users: Utilisateurs
+        observations: Observations
+        no_user: Aucun utilisateur n'existe pour le moment.
+        close: Fermer
+        confirm: Confirmer
+        abort: Annuler
+        delete:
+            title: Supprimer
+            question: |
+                Souhaitez-vous confirmer la suppression ?
+                Cette action est irréversible.
+        edit:
+            title: Modifier l'utilisateur
+            info: Ne remplissez pas ces champs si vous ne souhaitez pas modifier le mot de passe actuel de l'utilisateur.
 
     validation:
         user:

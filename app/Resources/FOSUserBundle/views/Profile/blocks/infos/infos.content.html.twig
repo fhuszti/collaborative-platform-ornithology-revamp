@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-xs-12 col-sm-4 bold">
-		{{ 'core.profile.block1.content.surname'|trans }}
+		{{ 'core.profile.infos.content.surname'|trans }}
 	</div>
 	<div class="col-xs-12 col-sm-4">
 		{{ user.surname }}
@@ -9,7 +9,7 @@
 
 <div class="row">
 	<div class="col-xs-12 col-sm-4 bold">
-		{{ 'core.profile.block1.content.firstname'|trans }}
+		{{ 'core.profile.infos.content.firstname'|trans }}
 	</div>
 	<div class="col-xs-12 col-sm-4">
 		{{ user.firstName }}
@@ -19,15 +19,15 @@
 <div class="row">
 	<div class="col-xs-10 col-sm-8 no-padding">
     	<div class="col-xs-12 col-sm-6 bold">
-    		{{ 'core.profile.block1.content.email'|trans }}
+    		{{ 'core.profile.infos.content.email'|trans }}
     	</div>
     	<div class="col-xs-12 col-sm-6">
     		{{ user.email }}
     	</div>
 	</div>
-	<div data-toggle="modal" href="#profile_email-modal" class="col-xs-2 col-sm-4">
-		{% image 'http://assets.fhuszti.tech/nao/profile/profile-edit.png' %}
-			<img src="{{ asset_url }}" title="{{ 'core.profile.block1.content.edit'|trans }}" alt="{{ 'core.profile.block1.content.edit'|trans }}" data-action="{{ path('fos_user_profile_edit') }}" id="profile_email-link" />
+	<div class="col-xs-2 col-sm-4">
+		{% image 'http://fhuszti.com.s3.amazonaws.com/nao/profile/profile-edit.png' %}
+			<img src="{{ asset_url }}" title="{{ 'core.profile.infos.content.edit'|trans }}" alt="{{ 'core.profile.infos.content.edit'|trans }}" data-url="{{ path('fos_user_profile_edit') }}" id="profile_email-link" data-toggle="modal" href="#profile_infos-edit-modal" />
 		{% endimage %}
 	</div>
 </div>
@@ -35,15 +35,17 @@
 <div class="row">
 	<div class="col-xs-10 col-sm-8 no-padding">
     	<div class="col-xs-12 col-sm-6 bold">
-    		{{ 'core.profile.block1.content.password'|trans }}
+    		{{ 'core.profile.infos.content.password'|trans }}
     	</div>
     	<div class="col-xs-12 col-sm-6">
     		*********
     	</div>
 	</div>
-	<div data-toggle="modal" href="#profile_pass-modal" class="col-xs-2 col-sm-4">
-		{% image 'http://assets.fhuszti.tech/nao/profile/profile-edit.png' %}
-			<img src="{{ asset_url }}" alt="{{ 'core.profile.block1.content.edit'|trans }}" data-action="{{ path('fos_user_change_password') }}" id="profile_pass-link" />
+	<div class="col-xs-2 col-sm-4">
+		{% image 'http://fhuszti.com.s3.amazonaws.com/nao/profile/profile-edit.png' %}
+			<img src="{{ asset_url }}" title="{{ 'core.profile.infos.content.edit'|trans }}" alt="{{ 'core.profile.infos.content.edit'|trans }}" data-url="{{ path('fos_user_change_password') }}" id="profile_pass-link" data-toggle="modal" href="#profile_infos-edit-modal" />
 		{% endimage %}
 	</div>
 </div>
+
+{% include "@FOSUser/Profile/modals/infos-modal.html.twig" %}
