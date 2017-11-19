@@ -80,7 +80,7 @@ class Observation
 
     /**
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", inversedBy="observation", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", mappedBy="observation", cascade={"persist", "remove"})
      * @Assert\Valid()
      */
     private $image;

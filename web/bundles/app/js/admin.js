@@ -61,7 +61,7 @@ $(function() {
 
         //init observation display load on modal opening for every observation
         observations.each(function(index, elmt) {
-            $(elmt).on('click', function() {
+            $(elmt).on('click', function(e) {
 				//start loading animation
 				startContentLoading(
 					$('#admin_obs-modal').find('.modal-content'),
@@ -108,14 +108,15 @@ $(function() {
 
 
 
-	//init user delete modal
-	function initUserDeleteModal() {
-		var buttons = $('.user_button-row .btn-danger'),
-			confirm = $('#admin_user-delete-confirm');
+	//init delete modal
+	function initDeleteModal() {
+		var buttons = $('#admin_content .btn-danger'),
+			confirm = $('#admin_delete-confirm');
 
 		//for each of the "delete" buttons
 		buttons.each(function(index, elmt) {
 			$(elmt).on('click', function(e) {
+
 				//on click we assign the delete url to the modal confirm button
 				confirm.attr( 'href', $(e.target).data('url') );
 			});
@@ -164,7 +165,7 @@ $(function() {
 	$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyAQU7F5LE2WL4xxEpeUysxGqriN_RM36G0");
 
 	initObservationModal();
-	initUserDeleteModal();
+	initDeleteModal();
 	initUserEditModal();
 });
 

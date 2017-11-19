@@ -63,6 +63,20 @@ class ObservationController extends Controller
         ));
     }
 
+    /**
+     * @Route("/admin/observation/delete/{id}", requirements={"id" = "\d+"}, name="admin_obs_delete")
+     * @Method("GET")
+     */
+    public function deleteObservationAction(EntityManagerInterface $em, Observation $obs, SessionInterface $session)
+    {
+        $em->remove($obs);
+        $em->flush();
+
+        $session->getFlashbag()->add('success', 'Observation supprimée avec succès !');
+
+        return $this->redirectToRoute('admin_home');
+    }
+
 
 
 

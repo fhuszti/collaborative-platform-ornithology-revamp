@@ -262,9 +262,9 @@ core:
         confirm: Confirmer
         abort: Annuler
         delete:
-            title: Supprimer l'utilisateur
+            title: Supprimer
             question: |
-                Êtes-vous certain(e) de vouloir supprimer définitivement cet utilisateur ?
+                Souhaitez-vous confirmer la suppression ?
                 Cette action est irréversible.
         edit:
             title: Modifier l'utilisateur

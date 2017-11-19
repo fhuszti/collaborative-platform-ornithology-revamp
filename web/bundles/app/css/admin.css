@@ -56,7 +56,7 @@ body {
 	background-color: #eee;
 }
 
-#admin_obs-modal .modal-content, #admin_user-delete-modal .modal-content, #admin_user-edit-modal .modal-content {
+#admin_obs-modal .modal-content, #admin_delete-modal .modal-content, #admin_user-edit-modal .modal-content {
 	background-color: rgb(187, 223, 180);
 }
 #admin_obs-modal .modal-content, #admin_user-edit-modal .modal-content {

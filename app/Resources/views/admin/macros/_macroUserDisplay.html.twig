@@ -9,7 +9,7 @@
                 <span class="glyphicon glyphicon-pencil" data-url="{{ path('admin_user_edit', {id: user.id}) }}"></span>
             </button>
 
-            <button class="btn btn-danger btn-sm" href="#admin_user-delete-modal" data-toggle="modal" data-url="{{ path('admin_user_delete', {id: user.id}) }}" title="{{ 'core.admin.delete.title'|trans }}">
+            <button class="btn btn-danger btn-sm" href="#admin_delete-modal" data-toggle="modal" data-url="{{ path('admin_user_delete', {id: user.id}) }}" title="{{ 'core.admin.delete.title'|trans }}">
                 <span class="glyphicon glyphicon-remove" data-url="{{ path('admin_user_delete', {id: user.id}) }}"></span>
             </button>
    		</div>
