@@ -82,6 +82,16 @@ assetic:
         jsqueeze:   ~
         scssphp:
             formatter: 'Leafo\ScssPhp\Formatter\Compressed'
+    bundles:
+        - FrameworkBundle
+        - TwigBundle
+        - MonologBundle
+        - SwiftmailerBundle
+        - SensioFrameworkExtraBundle
+        - AsseticBundle
+        - AppBundle
+        - UserBundle
+        - FOSUserBundle
 
 # FOSUserBundle Configuration
 fos_user:
