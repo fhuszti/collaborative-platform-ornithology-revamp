@@ -1,0 +1,36 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    {{ 'core.errors.error'|trans }} 404 - {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% stylesheets filter='cssrewrite, ?scssphp'
+        'css/default.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    <div class="col-xs-12 nao_title">
+        <div class="col-xs-12 col-sm-10 col-md-8">
+            <h1>{{ 'core.errors.error'|trans }} 404 : {{ 'core.errors.e404.title'|trans }}</h1>
+        </div>
+
+        <div class="hidden-xs col-sm-2 nao_title-icon">
+            <span class="glyphicon glyphicon-ban-circle error-page-icon"></span>
+        </div>
+    </div>
+
+    <div class="col-xs-12 error-page-text-div">
+    	<p class="col-xs-12">
+    		{{ 'core.errors.e404.text'|trans|nl2br }}
+    	</p>
+
+    	<p class="col-xs-12">
+    		<a href="{{ path('core_home') }}" title="{{ 'core.errors.home'|trans }}">{{ 'core.errors.home'|trans }}</a>
+    	</p>
+    </div>
+{% endblock %}

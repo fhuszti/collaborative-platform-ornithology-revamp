@@ -271,6 +271,34 @@ core:
             title: Modifier l'utilisateur
             info: Ne remplissez pas ces champs si vous ne souhaitez pas modifier le mot de passe actuel de l'utilisateur.
 
+    errors:
+        error: Erreur
+        default: |
+            Le serveur a rencontré une erreur. Veuillez réessayer.
+            Si le problème persiste, contactez un administrateur.
+        home: Retour à la page d'accueil
+        e400:
+            title: Mauvaise requête
+            text: |
+                Votre requête au serveur est incorrecte ou a été corrompue. Veuillez réessayer.
+                Si le problème persiste, contactez un administrateur.
+        e401:
+            title: Accès non-autorisé
+            text: L'accès à cette ressource est restreint. Veuillez vous authentifier et réessayer.
+        e403:
+            title: Accès interdit
+            text: L'accès à cette ressource est interdit.
+        e404:
+            title: Page introuvable
+            text: |
+                La page demandée est introuvable. Veuillez vérifier l'adresse (URL) et réessayer.
+                Si le problème persiste, contactez un administrateur.
+        e500:
+            title: Erreur serveur
+            text: |
+                Le serveur a rencontré une erreur. Cela peut-être dû à un trop grand nombre de visiteurs parcourant le site au même moment. Veuillez réessayer.
+                Si le problème persiste, contactez un administrateur.
+
     validation:
         user:
             firstname:
