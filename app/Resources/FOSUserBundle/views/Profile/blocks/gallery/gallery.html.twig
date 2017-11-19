@@ -1,0 +1,19 @@
+<div class="col-xs-12 profile-block-header">
+	{{ 'core.profile.gallery.header'|trans|upper }}
+</div>
+<div class="col-xs-12 profile-block-content" id="profile_gallery-content">
+	<ul class="gallery">
+		{% for observation in user.observations|reverse if observation.status and observation.image is not empty %}
+			<li>
+				<img src="{{ observation.image.fileName }}" alt="{{ observation.bird.lbNom }}" />
+				<p class="text">
+					{{ observation.bird.lbNom }} - {{ observation.date|date("d/m/Y") }}
+				</p>
+			</li>
+		{% else %}
+			<div class="col-xs-12">
+				{{ 'core.profile.gallery.empty.sentence'|trans }} <a href="{{ path('core_observation') }}" title="{{ 'core.profile.gallery.empty.link.title'|trans }}">{{ 'core.profile.gallery.empty.link.value'|trans }}</a>
+			</div>
+		{% endfor %}
+	</ul>
+</div>

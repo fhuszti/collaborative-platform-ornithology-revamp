@@ -1,12 +1,23 @@
 {% extends "@FOSUser/layout.html.twig" %}
 {% set profilePage = true %}
+{% import "macros/_macroMetaTags.html.twig" as macroMetaTags %}
 
-{% import "@FOSUser/Profile/macros/_macroInfosModal.html.twig" as macroInfosModal %}
-{% import "@FOSUser/Profile/macros/_macroObservationDisplay.html.twig" as macroObservationDisplay %}
-{% import "@FOSUser/Profile/macros/_macroObservationModal.html.twig" as macroObservationModal %}
+{% set meta_title %}{{'core.profile.meta_title'|trans}}{% endset %}
+
+{% set meta_description %}
+{{'core.profile.meta_description'|trans}}
+{% endset %}
+
+{% set meta_url %}
+{{ url('fos_user_profile_show') }}
+{% endset %}
 
 {% block title %}
-    {{ 'core.profile.title'|trans }} - {{ parent() }}
+    {{ meta_title }} - {{ parent() }}
+{% endblock %}
+
+{% block meta %}
+    {{ macroMetaTags.meta_tags(meta_title, meta_description, meta_url ) }}
 {% endblock %}
 
 {% block stylesheets %}

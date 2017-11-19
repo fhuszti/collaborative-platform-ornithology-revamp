@@ -1,3 +1,5 @@
+{% import "@FOSUser/Profile/macros/_macroObservationDisplay.html.twig" as macroObservationDisplay %}
+
 <div class="tab-pane" id="waiting">
 	{% for observation in user.observations|reverse if observation.status is null %}
         {{ macroObservationDisplay.observation_display(observation) }}

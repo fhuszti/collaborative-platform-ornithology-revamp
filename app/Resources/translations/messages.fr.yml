@@ -212,8 +212,10 @@ core:
         back: Retour à la page de Connexion
 
     profile:
+        meta_title: Mon Espace
+        meta_description: Retrouvez vos informations, les observations soumises et leur statut ainsi qu'une galerie des photos partagées sur votre page personnelle.
         title: Mon Espace
-        block1:
+        infos:
             header: Profil
             content:
                 title: Informations
@@ -222,33 +224,34 @@ core:
                 email: Adresse email
                 password: Mot de passe
                 edit: Modifier
-        block2:
+            modal: 
+                title: Modifier les informations
+                footer: 
+                    confirm: Modifier
+                    cancel: Annuler
+        observations:
             header: Observations
             content:
-                tab1: Validées
-                tab2: En attente
-                tab3: Refusées
+                valid: Validées
+                waiting: En attente
+                refused: Refusées
                 button: En voir plus
                 img_icon: Cette observation contient une photo
-                empty:
-                    observation:
-                        sentence: Aucune observation ici pour le moment.
-                        link: 
-                            title: Vers la page d'Observation
-                            value: Soumettez-en une !
-                    photo:
-                        sentence: Aucune photo ici pour le moment.
-                        link: 
-                            title: Vers la page d'Observation
-                            value: Soumettez une observation et une photo !
-        block3:
+            empty:
+                sentence: Aucune observation ici pour le moment.
+                link: 
+                    title: Vers la page d'Observation
+                    value: Soumettez-en une !
+            modal:
+                title: Observation
+                close: Fermer
+        gallery:
             header: Photos
-            content: 
-        modal:
-            email:
-                title: Changer d'adresse email
-            password:
-                title: Changer de mot de passe
+            empty:
+                sentence: Aucune photo ici pour le moment.
+                link: 
+                    title: Vers la page d'Observation
+                    value: Soumettez une observation et une photo !
 
     admin:
         title: Administration

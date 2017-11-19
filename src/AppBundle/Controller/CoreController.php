@@ -85,7 +85,7 @@ class CoreController extends Controller
     /**
      * @Route("/recherche", name="core_search")
      */
-    public function findAction(Request $request)
+    public function searchAction(Request $request)
 	{
 	    $defaultData = array('message' => 'find here');
 	    $form = $this->createFormBuilder($defaultData)

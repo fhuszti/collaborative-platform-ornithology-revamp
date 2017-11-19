@@ -15,6 +15,21 @@ use AppBundle\Entity\Observation;
 class ObservationController extends Controller
 {
     /**
+     * @Route("/observation/{id}", requirements={"id" = "\d+"}, name="obs_details")
+     * @Method("GET")
+     */
+    public function observationAction(Observation $observation)
+    {
+        return $this->render('@FOSUser/Profile/blocks/observations/observation.html.twig', array(
+            'observation' => $observation
+        ));
+    }
+
+
+
+
+
+    /**
      * @Route("/observation/ajouter", name="obs_add")
      * @Method({"GET", "POST"})
      */
