@@ -5,10 +5,7 @@
 	<ul class="gallery">
 		{% for observation in user.observations|reverse if observation.status and observation.image is not empty %}
 			<li>
-				<img src="{{ observation.image.fileName }}" alt="{{ observation.bird.lbNom }}" />
-				<p class="text">
-					{{ observation.bird.lbNom }} - {{ observation.date|date("d/m/Y") }}
-				</p>
+				<img src="{{ asset('uploads/images/' ~ observation.image.fileName) }}" alt="{% if observation.bird.nomVern is not empty %}({{ observation.bird.nomVern }}) {% endif %}{{ observation.bird.lbNom }}" />
 			</li>
 		{% else %}
 			<div class="col-xs-12">
