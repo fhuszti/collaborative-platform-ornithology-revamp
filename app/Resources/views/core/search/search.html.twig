@@ -24,7 +24,8 @@
 	{{ parent() }}
 
     {% stylesheets filter='cssrewrite, ?scssphp'
-    	'bundles/app/css/search.css' %}
+    	'bundles/app/css/search.css'
+    	'bundles/app/css/bird.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
     {% endstylesheets %}
 {% endblock %}
@@ -32,7 +33,7 @@
 {% block body %}
 	<div class="col-xs-12 nao_title">
 		<div class="col-xs-10 col-sm-6">
-			<h1>RECHERCHE</h1>
+			<h1>{{'core.search.title'|trans}}</h1>
 		</div>
 
 		<div class="hidden-xs col-sm-2 nao_title-icon">
@@ -43,14 +44,24 @@
 	</div>
 
 	<div class="col-xs-12" id="search_content">
-		<input class="input-lg form-control" placeholder="Recherchez un nom d'oiseau..." />
+		<input type="text" class="input-lg form-control hidden" placeholder="Recherchez un nom d'oiseau... (3 caractères minimum)" autocomplete="off" maxlength="250" autofocus />
 
-		<div class="col-xs-12" id="search_results">
-			<p class="text-center" id="empty-results">
-				Aucun résultat
-			</p>
+		<div class="col-xs-12 hidden" id="search_results" data-url="{{ path('core_ajax_search') }}">
 		</div>
+
+		<p class="text-center hidden" id="empty_results">
+			{{'core.search.no_result'|trans}}
+		</p>
+
+	    <div class="loader">
+	        <div class="line"></div>
+	        <div class="line"></div>
+	        <div class="line"></div>
+	        <div class="line"></div>
+	    </div>
 	</div>
+
+	{% include 'core/search/modal/bird-modal.html.twig' %}
 {% endblock %}
 
 {% block javascripts %}

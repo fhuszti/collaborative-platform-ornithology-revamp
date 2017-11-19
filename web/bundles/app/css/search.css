@@ -20,7 +20,24 @@ body {
 	border-radius: 0;
 }
 
-#empty-results {
+#search_results {
+	padding: 20px 15px;
+}
+#search_results>div {
+	font-size: 1.2em;
+	cursor: pointer;
+	padding: 20px 15px 0;
+}
+#search_results>div:hover, #search_results>div:focus, #search_results>div:active {
+	background-color: #ddd;
+}
+#search_results>div>hr {
+	border-color: #ddd;
+	margin-bottom: 0;
+}
+
+#empty_results {
 	margin-top: 150px;
 	font-size: 1.5em;
+	height: 100%;
 }

@@ -6,8 +6,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Doctrine\ORM\EntityManagerInterface;
 use AppBundle\Service\Mailer\MailerNotificator;
 use AppBundle\Form\Type\ContactType;
 use AppBundle\Entity\Bird;
@@ -84,11 +85,35 @@ class CoreController extends Controller
 
     /**
      * @Route("/recherche", name="core_search")
+     * @Method("GET")
      */
     public function searchAction()
 	{
 	    return $this->render('core/search/search.html.twig');
 	}
+
+	/**
+     * @Route("/recherche/ajax", name="core_ajax_search")
+     * @Method("GET")
+     */
+    public function ajaxSearchAction(Request $request, EntityManagerInterface $em)
+	{
+        //we return the full list of birds with common and latin name, ordered by ID
+        $birds = $em->getRepository('AppBundle:Bird')
+                    ->createQueryBuilder('b')
+					->select('b.id,b.lb_nom,b.nom_vern')
+					->getQuery()
+					->getArrayResult();
+
+		$birdsJSON = json_encode($birds, JSON_UNESCAPED_UNICODE);
+		$response = new Response($birdsJSON);
+		$response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+	}
+
+
+
     /**
      * @Route("/bird/{id}", name="bird")
      */

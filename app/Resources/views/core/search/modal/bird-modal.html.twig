@@ -1,0 +1,28 @@
+<div class="modal fade" id="bird-modal">
+  	<div class="modal-dialog">
+	    <div class="modal-content">
+	      	<div class="modal-header">
+	        	<button type="button" class="close" data-dismiss="modal">x</button>
+	        	
+	        	<h4 class="modal-title">{{ 'core.bird.header'|trans|upper }}</h4>
+	        </div>
+	      	
+	      	<div class="modal-body" id="bird-modal-body">
+	      		<!-- filled with AJAX -->
+	      	</div>
+
+		    <div class="loader">
+		        <div class="line"></div>
+		        <div class="line"></div>
+		        <div class="line"></div>
+		        <div class="line"></div>
+		    </div>
+
+	      	<div class="modal-footer">
+		        <button class="btn btn-default" data-dismiss="modal">
+		        	{{ 'core.bird.close'|trans }}
+		        </button>
+		     </div>
+	    </div>
+  	</div>
+</div>
