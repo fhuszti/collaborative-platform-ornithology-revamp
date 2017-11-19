@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
@@ -96,7 +97,7 @@ class CoreController extends Controller
      * @Route("/recherche/ajax", name="core_ajax_search")
      * @Method("GET")
      */
-    public function ajaxSearchAction(Request $request, EntityManagerInterface $em)
+    public function ajaxSearchAction(EntityManagerInterface $em)
 	{
         //we return the full list of birds with common and latin name, ordered by ID
         $birds = $em->getRepository('AppBundle:Bird')
@@ -112,26 +113,34 @@ class CoreController extends Controller
         return $response;
 	}
 
-
+    /**
+     * @Route("/oiseau/{id}", requirements={"id" = "\d+"}, name="core_bird")
+     * @Method("GET")
+     */
+    public function birdAction(Bird $bird)
+    {
+        return $this->render('core/search/bird.html.twig', array(
+            'bird' => $bird
+        ));
+    }
 
     /**
-     * @Route("/bird/{id}", name="bird")
+     * @Route("/oiseau/ajax/{id}", requirements={"id" = "\d+"}, name="core_ajax_bird")
+     * @Method("GET")
      */
-    public function birdAction($id)
-	{
-	    $bird = $this->getDoctrine()
-	        ->getRepository(Bird::class)
-	        ->find($id);
-        $observations = $this->getDoctrine()
-	        ->getRepository(Observation::class)
-	        ->findBy(array( 'birdId' => $id));
+    public function ajaxBirdAction(Bird $bird, EntityManagerInterface $em)
+    {
+        //we return the full list of observations associated with the current bird
+        $observations = $em->getRepository('AppBundle:Observation')
+                    	   ->createQueryBuilder('o')
+                    	   ->andWhere('o.status = :status')
+						   ->setParameter('status', true)
+						   ->andWhere('o.bird = :bird')
+						   ->setParameter('bird', $bird)
+						   ->select('o.lattitude,o.longitude,o.comment')
+						   ->getQuery()
+						   ->getArrayResult();
 
-	    if (!$bird) {
-	        throw $this->createNotFoundException(
-	            'Cet ID ne correspond à aucun oiseau.'
-	        );
-	    }
-
-	    return $this->render('core/bird.html.twig', array('bird' => $bird, 'observations' => $observations));
-	}
+        return new JsonResponse($observations);
+    }
 }

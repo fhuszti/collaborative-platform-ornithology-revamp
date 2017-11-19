@@ -61,7 +61,7 @@ class ObservationType extends AbstractType
                     'placeholder' => array(
                         'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour'
                     ),
-                    'years' => range(1990,date('Y'))
+                    'years' => array_reverse( range(1990,date('Y')) )
                 ))
                 ->add('comment', TextareaType::class, array(
                     'required' => false,

@@ -25,7 +25,8 @@
 
     {% stylesheets filter='cssrewrite, ?scssphp'
     	'bundles/app/css/search.css'
-    	'bundles/app/css/bird.css' %}
+    	'bundles/app/css/bird.css'
+        'bundles/app/css/jquery.bsPhotoGallery.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
     {% endstylesheets %}
 {% endblock %}
@@ -46,12 +47,14 @@
 	<div class="col-xs-12" id="search_content">
 		<input type="text" class="input-lg form-control hidden" placeholder="Recherchez un nom d'oiseau... (3 caractères minimum)" autocomplete="off" maxlength="250" autofocus />
 
-		<div class="col-xs-12 hidden" id="search_results" data-url="{{ path('core_ajax_search') }}">
+		<div class="col-xs-12 hidden" id="search_results" data-url="{{ path('core_ajax_search') }}" data-home="{{ path('core_home') }}">
 		</div>
 
 		<p class="text-center hidden" id="empty_results">
 			{{'core.search.no_result'|trans}}
 		</p>
+
+		{% include 'core/search/modal/bird-modal.html.twig' %}
 
 	    <div class="loader">
 	        <div class="line"></div>
@@ -60,15 +63,14 @@
 	        <div class="line"></div>
 	    </div>
 	</div>
-
-	{% include 'core/search/modal/bird-modal.html.twig' %}
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
 
     {% javascripts filter='?jsqueeze'
-        'bundles/app/js/search.js' %}
+        'bundles/app/js/search.js'
+        'bundles/app/js/jquery.bsPhotoGallery.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}

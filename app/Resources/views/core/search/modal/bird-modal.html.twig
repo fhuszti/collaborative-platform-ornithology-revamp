@@ -4,10 +4,12 @@
 	      	<div class="modal-header">
 	        	<button type="button" class="close" data-dismiss="modal">x</button>
 	        	
-	        	<h4 class="modal-title">{{ 'core.bird.header'|trans|upper }}</h4>
+	        	<button class="modal-title btn btn-info" data-dismiss="modal">
+		        	<span class="glyphicon glyphicon-chevron-left"></span> {{ 'core.bird.close'|trans }}
+		        </button>
 	        </div>
 	      	
-	      	<div class="modal-body" id="bird-modal-body">
+	      	<div class="row modal-body" id="bird-modal-body">
 	      		<!-- filled with AJAX -->
 	      	</div>
 
@@ -17,12 +19,6 @@
 		        <div class="line"></div>
 		        <div class="line"></div>
 		    </div>
-
-	      	<div class="modal-footer">
-		        <button class="btn btn-default" data-dismiss="modal">
-		        	{{ 'core.bird.close'|trans }}
-		        </button>
-		     </div>
 	    </div>
   	</div>
 </div>

@@ -155,8 +155,18 @@ core:
         no_result: Aucun résultat
     
     bird:
-        header: Détails
         close: Revenir à la recherche
+        infos:
+            title: INFORMATIONS
+            family: Famille
+            rank: Rang
+            es: Espèce
+            sses: Sous-espèce
+            latin: Nom latin
+            full: Nom complet
+            common: Nom(s) commun(s)
+        gallery:
+            title: GALERIE
 
     register:
         meta_title: Inscription
@@ -237,7 +247,7 @@ core:
                 title: Observation
                 close: Fermer
         gallery:
-            header: Photos
+            header: Galerie
             empty:
                 sentence: Aucune photo ici pour le moment.
                 link: 
