@@ -26,6 +26,13 @@ $(function() {
         return re.test(pass);
     }
 
+    function validateMessage(message) {
+        //Yeah, this one is mine. How did you guess ?
+        var re = /^(.|\s)+$/i;
+
+        return re.test(message);
+    }
+
     function liveCheckInputs(inputObjects) {
         inputObjects.name.on('keyup', function() {
             if (validateName(inputObjects.name.val())) {
@@ -37,7 +44,7 @@ $(function() {
         });
 
         inputObjects.message.on('keyup', function() {
-            if (validateName(inputObjects.message.val())) {
+            if (validateMessage(inputObjects.message.val())) {
                 colorBorders(inputObjects.message, true);
             }
             else {
