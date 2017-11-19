@@ -90,10 +90,10 @@ body {
 #profile_obs-modal .modal-content {
 	background-color: rgb(187, 223, 180);
 }
-#profile_obs-modal-left-panel img {
+.obs-modal-left-panel img {
 	max-width: 100%;
 }
-#profile_obs-modal-infos ul {
+.obs-modal-infos ul {
 	list-style-type: none;
 	padding: 0 15px;
 	margin-bottom: 0;
@@ -104,7 +104,7 @@ body {
 #gmaps_canvas, #gmaps_canvas * {
     overflow: visible;
 }
-#profile_obs-modal-comment-panel {
+.obs-modal-comment-panel {
 	word-wrap: break-word;
 }
 

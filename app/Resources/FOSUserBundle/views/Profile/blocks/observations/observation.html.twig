@@ -1,6 +1,6 @@
 <div class="row">
 	{% if observation.image is not empty %}
-		<div class="col-xs-12 col-sm-5" id="profile_obs-modal-left-panel">
+		<div class="col-xs-12 col-sm-5 obs-modal-left-panel">
 			<img src="{{ asset('uploads/images/' ~ observation.image.fileName) }}" alt="{{ observation.bird.lbNom }}">
 		</div>
 
@@ -12,7 +12,7 @@
 	{% endif %}
 </div>
 
-<div class="row" id="profile_obs-modal-infos">
+<div class="row obs-modal-infos">
 	<hr />
 	<ul>
 		<li><em>{% if observation.bird.nomVern is not empty %}({{ observation.bird.nomVern }}) {% endif %}{{ observation.bird.lbNom }}</em></li>
@@ -22,7 +22,7 @@
 
 {% if observation.comment is not empty %}
 	<div class="row">
-		<div class="col-xs-12" id="profile_obs-modal-comment-panel">
+		<div class="col-xs-12 obs-modal-comment-panel">
 			<hr />
 			{{ observation.comment }}
 		</div>

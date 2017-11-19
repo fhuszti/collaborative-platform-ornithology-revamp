@@ -1,5 +1,5 @@
 <div class="row">    
-  	{% include 'admin/blocks/observations/observations.tabs.html.twig' %}
+  	{% include '@FOSUser/Profile/blocks/observations/observations.tabs.html.twig' %}
 
   	<div class="tab-content">
       	{% include 'admin/blocks/observations/observations.tab-valid.html.twig' %}
@@ -7,5 +7,7 @@
       	{% include 'admin/blocks/observations/observations.tab-waiting.html.twig' %}
 
       	{% include 'admin/blocks/observations/observations.tab-refused.html.twig' %}
+
+		{% include "admin/modals/observation-modal.html.twig" %}
   	</div>
 </div>
