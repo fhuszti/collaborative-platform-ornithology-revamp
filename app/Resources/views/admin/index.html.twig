@@ -24,7 +24,7 @@
 	</div>
 
 	<div class="col-xs-12" id="admin_content">
-		<ul class="nav nav-pills nav-justified">
+		<ul class="nav nav-pills nav-justified hidden">
 	      	<li class="active">
 	      		<a href="#observations" data-toggle="tab">{{ 'core.admin.observations'|trans }}</a>
 	      	</li>
@@ -34,7 +34,7 @@
 	      	</li>
 	  	</ul>
 	  	
-	  	<div class="tab-content">
+	  	<div class="tab-content hidden">
 	      	{% for flashMessage in app.session.flashbag.get('error') %}
 			    <div class="col-xs-12 alert alert-danger">
 			        {{ flashMessage }}
@@ -54,6 +54,13 @@
 	      		{% include 'admin/blocks/users/users.html.twig' %}
 	      	</div>
 	  	</div>
+
+	    <div class="loader">
+	        <div class="line"></div>
+	        <div class="line"></div>
+	        <div class="line"></div>
+	        <div class="line"></div>
+	    </div>
 	</div>
 {% endblock %}
 

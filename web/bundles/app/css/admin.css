@@ -8,6 +8,7 @@ body {
 #admin_content {
 	position: relative;
 	margin-top: 45px;
+	min-height: 250px;
 	padding: 0 0 20px;
 	font-size: 1.2em;
 	background-color: rgb(255, 255, 255);
@@ -57,6 +58,9 @@ body {
 
 #admin_obs-modal .modal-content, #admin_user-delete-modal .modal-content, #admin_user-edit-modal .modal-content {
 	background-color: rgb(187, 223, 180);
+}
+#admin_obs-modal .modal-content, #admin_user-edit-modal .modal-content {
+	min-height: 250px;
 }
 
 #admin_obs-modal-state ul {

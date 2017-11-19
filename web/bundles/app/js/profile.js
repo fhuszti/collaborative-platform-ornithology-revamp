@@ -1,5 +1,21 @@
 $(function() {
 	
+	//show the loading screen and hide the content
+	function startContentLoading(modal, newHidden = []) {
+		modal.children('.hidden').removeClass('hidden');
+		newHidden.forEach(function(elmt) {
+			elmt.addClass('hidden');
+		});
+	}
+
+	//hide the loading screen and show the content
+	function endContentLoading(modal) {
+		modal.children('.hidden').removeClass('hidden');
+		modal.children('.loader').addClass('hidden');
+	}
+
+
+
 	//init modal used for infos editing
 	function initEditModal( button, formName ) {
 		var modal_body = $('#profile_infos-edit-modal-body'),
@@ -9,11 +25,22 @@ $(function() {
 		button.on('click', function(e) {
 			//we clean the modal body
 			modal_body.html('');
+			
+			//start loading animation
+			startContentLoading(
+				$('#profile_infos-edit-modal').find('.modal-content'),
+				[
+					$('#profile_infos-edit-modal').find('.modal-footer')
+				]
+			);
 
 			//we load the correct form inside the modal
 			modal_body.load($(e.target).data('url'), function() {
 				//link the modal confirm button to the newly loaded form
 				confirmButton.attr('form', formName);
+
+	    		//hide the loading screen and show the content
+	    		endContentLoading( $('#profile_infos-edit-modal').find('.modal-content') );
 			});
 		});
 	}
@@ -67,6 +94,14 @@ $(function() {
         //init observation display load on modal opening for every observation
         observations.each(function(index, elmt) {
             $(elmt).on('click', function() {
+				//start loading animation
+				startContentLoading(
+					$('#profile_obs-modal').find('.modal-content'),
+					[
+						$('#profile_obs-modal').find('.modal-footer')
+					]
+				);
+				
             	//we load the right observation inside the modal
 				$('#profile_obs-modal-body').load($(this).data('url'), function() {
 					//get the observation position data
@@ -79,6 +114,9 @@ $(function() {
 					if (typeof google === 'object' && typeof google.maps === 'object') {
 					 	initMap( pos );
 					}
+
+	    			//hide the loading screen and show the content
+	    			endContentLoading( $('#profile_obs-modal').find('.modal-content') );
 				});
             });
         });
@@ -108,4 +146,10 @@ $(function() {
 	initInfosEdit();
 	initObservationModal();
 	initGallery();
+});
+
+//hide the initial loading screen and show the content of the page on load finished
+$(window).on('load', function() {
+	$('#profile_content>.hidden').removeClass('hidden');
+	$('#profile_content>.loader').addClass('hidden');
 });

@@ -44,34 +44,34 @@
 
 <div class="col-xs-12" id="observation_content">
     {% for flashMessage in app.session.flashbag.get('error') %}
-        <div class="col-xs-12 alert alert-danger">
+        <div class="col-xs-12 alert alert-danger hidden">
             {{ flashMessage }}
         </div>
     {% endfor %}
     {% for flashMessage in app.session.flashbag.get('success') %}
-        <div class="col-xs-12 alert alert-success">
+        <div class="col-xs-12 alert alert-success hidden">
             {{ flashMessage }}
         </div>
     {% endfor %}
 
     {% image 'http://fhuszti.com.s3.amazonaws.com/nao/separator-angle.png' %}
-        <img class="separator-angle" src="{{ asset_url }}" alt="" />
+        <img class="separator-angle hidden" src="{{ asset_url }}" alt="" />
     {% endimage %}
 
-    <p class="margin-top-element">
+    <p class="margin-top-element hidden">
         {{'core.observation.localisation.label'|trans}}<br />
         <span id="observation_localisation-helper">
             {{'core.observation.localisation.helper'|trans|nl2br}}
         </span>
     </p>
 
-    <div class="row" id="gmaps_canvas">
+    <div class="row hidden" id="gmaps_canvas">
     </div>
     
-    <div class="col-xs-12" id="observationForm-container" data-url="{{ path('obs_add') }}">
+    <div class="col-xs-12 hidden" id="observationForm-container" data-url="{{ path('obs_add') }}">
     </div>
 
-    <div id="observation_confirmButtonDiv">
+    <div class="hidden" id="observation_confirmButtonDiv">
         <div>
             {% image 'http://fhuszti.com.s3.amazonaws.com/nao/separator-line.png' %}
                 <img class="separator-line" src="{{ asset_url }}" alt="" />
@@ -81,6 +81,13 @@
         <button type="submit" class="btn btn-info btn-lg" form="observationForm">
             {{'core.observation.confirm'|trans}}
         </button>
+    </div>
+
+    <div class="loader">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
     </div>
 </div>
 {% endblock %}

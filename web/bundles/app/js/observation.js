@@ -71,6 +71,10 @@ $(function() {
 		
 		container.load(container.data('url'), function() {
 			initMainMap();
+
+			//hide the initial loading screen and show the content of the page
+			$('#content .hidden').removeClass('hidden');
+			$('#content .loader').addClass('hidden');
 		});
 	}
 

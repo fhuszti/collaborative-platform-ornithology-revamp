@@ -1,5 +1,21 @@
 $(function() {
 	
+	//show the loading screen and hide the content
+	function startContentLoading(modal, newHidden = []) {
+		modal.children('.hidden').removeClass('hidden');
+		newHidden.forEach(function(elmt) {
+			elmt.addClass('hidden');
+		});
+	}
+
+	//hide the loading screen and show the content
+	function endContentLoading(modal) {
+		modal.children('.hidden').removeClass('hidden');
+		modal.children('.loader').addClass('hidden');
+	}
+
+
+
 	//generate a different button depending on the actual state of the observation
 	function generateStateBtn(state, urls) {
 		var button;
@@ -46,6 +62,14 @@ $(function() {
         //init observation display load on modal opening for every observation
         observations.each(function(index, elmt) {
             $(elmt).on('click', function() {
+				//start loading animation
+				startContentLoading(
+					$('#admin_obs-modal').find('.modal-content'),
+					[
+						$('#admin_obs-modal').find('.modal-footer')
+					]
+				);
+
             	//get current observation state and generate custom state button
             	var state = $(this).data('state'),
 	            	urls = {
@@ -67,6 +91,9 @@ $(function() {
 					if (typeof google === 'object' && typeof google.maps === 'object') {
 					 	initMap( pos );
 					}
+
+	    			//hide the loading screen and show the content
+	    			endContentLoading( $('#admin_obs-modal').find('.modal-content') );
 				});
             });
         });
@@ -106,9 +133,20 @@ $(function() {
 		//for each of the "edit" buttons
 		buttons.each(function(index, elmt) {
 			$(elmt).on('click', function(e) {
+				//start loading animation
+				startContentLoading(
+					$('#admin_user-edit-modal').find('.modal-content'),
+					[
+						$('#admin_user-edit-modal').find('.modal-footer')
+					]
+				);
+				
 				//we load the correct form inside the modal
 				modal_body.load($(e.target).data('url'), function() {
 					modal_body.find('.checkbox>label').removeClass();
+
+	    			//hide the loading screen and show the content
+	    			endContentLoading( $('#admin_user-edit-modal').find('.modal-content') );
 				});
 			});
 		});
@@ -128,4 +166,10 @@ $(function() {
 	initObservationModal();
 	initUserDeleteModal();
 	initUserEditModal();
+});
+
+//hide the initial loading screen and show the content of the page on load finished
+$(window).on('load', function() {
+	$('#admin_content>.hidden').removeClass('hidden');
+	$('#admin_content>.loader').addClass('hidden');
 });

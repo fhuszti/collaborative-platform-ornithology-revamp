@@ -1,7 +1,7 @@
-<div class="col-xs-12 profile-block-header">
+<div class="col-xs-12 profile-block-header hidden">
 	{{ 'core.profile.infos.header'|trans|upper }}
 </div>
-<div class="profile-block-content" id="profile_infos-content">
+<div class="profile-block-content hidden" id="profile_infos-content">
 	{% for flashMessage in app.session.flashbag.get('error') %}
 	    <div class="col-xs-12 alert alert-danger">
 	        {{ flashMessage }}
