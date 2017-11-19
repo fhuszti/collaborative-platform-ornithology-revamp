@@ -1,11 +1,11 @@
 {% form_theme emailForm 'form/form_errors.html.twig' %}
 
-{% for flashMessage in app.session.flashbag.get('error') %}
+{% for flashMessage in app.session.flashbag.get('error') if flashMessage is not empty %}
     <div class="col-xs-12 alert alert-danger">
         {{ flashMessage }}
     </div>
 {% endfor %}
-{% for flashMessage in app.session.flashbag.get('success') %}
+{% for flashMessage in app.session.flashbag.get('success') if flashMessage is not empty %}
     <div class="col-xs-12 alert alert-success">
         {{ flashMessage }}
     </div>

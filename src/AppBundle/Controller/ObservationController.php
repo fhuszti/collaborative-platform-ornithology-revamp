@@ -44,7 +44,7 @@ class ObservationController extends Controller
         //create a unique success message
         $successMessage = 'Observation ajoutée avec succès !';
         //and a unique fields list
-        $fields = array('bird', 'date', 'content', 'image', 'longitude', 'lattitude');
+        $fields = array('bird', 'date', 'comment', 'image', 'longitude', 'lattitude');
         
         //manage everything for the add observation form submission
         $addObservationResponse = $fm->submitSinglePersistType( $addObservationForm, $observation, $fields, $session, $successMessage );

@@ -43,12 +43,12 @@
 </div>
 
 <div class="col-xs-12" id="observation_content">
-    {% for flashMessage in app.session.flashbag.get('error') %}
+    {% for flashMessage in app.session.flashbag.get('error') if flashMessage is not empty %}
         <div class="col-xs-12 alert alert-danger hidden">
             {{ flashMessage }}
         </div>
     {% endfor %}
-    {% for flashMessage in app.session.flashbag.get('success') %}
+    {% for flashMessage in app.session.flashbag.get('success') if flashMessage is not empty %}
         <div class="col-xs-12 alert alert-success hidden">
             {{ flashMessage }}
         </div>

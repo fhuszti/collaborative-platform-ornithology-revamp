@@ -28,6 +28,17 @@ class Observation
      * @var string
      *
      * @ORM\Column(name="longitude", type="string", length=255)
+     *
+     * @Assert\Type(
+     *     type="string",
+     *     message="La longitude de l'observation doit être une chaîne de caractères valide."
+     * )
+     * @Assert\Length(
+     *     min=2,
+     *     max=255,
+     *     minMessage="La longitude de l'observation doit contenir plus de 2 caractères.",
+     *     maxMessage="La longitude de l'observation ne peut contenir plus de 255 caractères."
+     * )
      */
     private $longitude;
 
@@ -35,6 +46,17 @@ class Observation
      * @var string
      *
      * @ORM\Column(name="lattitude", type="string", length=255)
+     *
+     * @Assert\Type(
+     *     type="string",
+     *     message="La lattitude de l'observation doit être une chaîne de caractères valide."
+     * )
+     * @Assert\Length(
+     *     min=2,
+     *     max=255,
+     *     minMessage="La lattitude de l'observation doit contenir plus de 2 caractères.",
+     *     maxMessage="La lattitude de l'observation ne peut contenir plus de 255 caractères."
+     * )
      */
     private $lattitude;
 
@@ -42,6 +64,9 @@ class Observation
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="date")
+     *
+     * @Assert\NotBlank(message="La date de l'observation doit être renseignée.")
+     * @Assert\Date(message="La date de l'observation doit être une date au format valide.")
      */
     private $date;
 
