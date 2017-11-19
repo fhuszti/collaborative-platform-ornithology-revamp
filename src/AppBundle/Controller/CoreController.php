@@ -85,25 +85,9 @@ class CoreController extends Controller
     /**
      * @Route("/recherche", name="core_search")
      */
-    public function searchAction(Request $request)
+    public function searchAction()
 	{
-	    $defaultData = array('message' => 'find here');
-	    $form = $this->createFormBuilder($defaultData)
-	        ->add('mySearch', TextType::class, array(
-
-              'attr' => array(
-                  'placeholder' => 'core.find.input_find','class' => 'form-control search-input input-lg',
-              )))
-	        ->getForm();
-
-	    $form->handleRequest($request);
-
-	    if ($form->isSubmitted() && $form->isValid()) {
-	        // data is an array with "name", "email", and "message" keys
-	        $data = $form->getData();
-	    }
-
-	    return $this->render('core/find.html.twig', array('form' => $form->createView()));
+	    return $this->render('core/search/search.html.twig');
 	}
     /**
      * @Route("/bird/{id}", name="bird")

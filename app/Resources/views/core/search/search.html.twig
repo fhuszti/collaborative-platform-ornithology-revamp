@@ -1,0 +1,63 @@
+{% extends 'layout.html.twig' %}
+{% set searchPage = true %}
+{% import "macros/_macroMetaTags.html.twig" as macroMetaTags %}
+
+{% set meta_title %}{{'core.search.meta_title'|trans}}{% endset %}
+
+{% set meta_description %}
+{{'core.search.meta_description'|trans}}
+{% endset %}
+
+{% set meta_url %}
+{{ url('core_search') }}
+{% endset %}
+
+{% block title %}
+    {{ meta_title }} - {{ parent() }}
+{% endblock %}
+
+{% block meta %}
+    {{ macroMetaTags.meta_tags(meta_title, meta_description, meta_url ) }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+
+    {% stylesheets filter='cssrewrite, ?scssphp'
+    	'bundles/app/css/search.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+	<div class="col-xs-12 nao_title">
+		<div class="col-xs-10 col-sm-6">
+			<h1>RECHERCHE</h1>
+		</div>
+
+		<div class="hidden-xs col-sm-2 nao_title-icon">
+			{% image 'http://fhuszti.com.s3.amazonaws.com/nao/second-menu/search.png' %}
+				<img src="{{ asset_url }}" alt="" />
+			{% endimage %}
+		</div>
+	</div>
+
+	<div class="col-xs-12" id="search_content">
+		<input class="input-lg form-control" placeholder="Recherchez un nom d'oiseau..." />
+
+		<div class="col-xs-12" id="search_results">
+			<p class="text-center" id="empty-results">
+				Aucun résultat
+			</p>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% javascripts filter='?jsqueeze'
+        'bundles/app/js/search.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
