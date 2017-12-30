@@ -1,0 +1,19 @@
+body {
+	background-image: url( "http://fhuszti.com.s3.amazonaws.com/nao/contact/contact-bg.jpg" );
+	background-size: cover;
+  	background-position: center center;
+  	background-repeat: no-repeat;
+}
+
+.nao_title-icon {
+	font-size: 3em;
+}
+
+.error-page-text-div {
+	margin-top: 45px;
+	padding: 30px 0;
+	font-size: 1.2em;
+	background-color: #CEE5C9;
+	border: 1px outset #eee;
+	opacity: 0.90;
+}

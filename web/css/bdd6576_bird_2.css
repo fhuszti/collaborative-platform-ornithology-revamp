@@ -1,0 +1,38 @@
+#bird-modal .modal-content {
+    background-color: rgb(255, 255, 255);
+    min-height: 250px;
+    height: 100%;
+}
+
+#bird-modal .modal-header {
+    background-color: rgb(187, 223, 180);
+}
+#bird-modal .modal-header span {
+    margin-right: 5px;
+}
+
+#bird-modal .bird-block-header {
+    background-color: rgb(156, 214, 147);
+    background-color: rgba(156, 214, 147, 0.9);
+    line-height: 50px;
+}
+
+#bird-modal .modal-body {
+    padding: 0 0 15px;
+    margin-left: 0;
+    margin-right: 0;
+}
+#bird-modal .modal-body ul {
+    margin-top: 20px;
+    list-style-type: none;
+    padding-left: 20px;
+}
+#bird-modal .modal-body ul:not(.gallery) li:first-of-type {
+    font-size: 1.3em;
+}
+
+#gmaps_canvas {
+    height: 300px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}

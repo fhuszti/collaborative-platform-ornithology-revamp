@@ -1,0 +1,81 @@
+body {
+	background-image: url( "http://fhuszti.com.s3.amazonaws.com/nao/contact/contact-bg.jpg" );
+	background-size: cover;
+  	background-position: center center;
+  	background-repeat: no-repeat;
+}
+
+#contact_form {
+	margin-top: 45px;
+	padding: 30px 0;
+	font-size: 1.2em;
+	background-color: #CEE5C9;
+	border: 1px outset #eee;
+	opacity: 0.90;
+	text-align: right;
+}
+#contact_form .alert {
+	text-align: left;
+}
+#contact_form .form-group {
+	margin-bottom: 30px;
+	padding: 0;
+}
+#contact_form label {
+	margin-top: 10px;
+}
+#contact_form textarea {
+	min-height: 250px;
+}
+
+#submitButtonDiv {
+	text-align: right;
+	padding-right: 45px;
+	position: relative;
+	height: 150px;
+}
+#pelican {
+	position: absolute;
+	left: 10px;
+	top: -200px;
+}
+
+#contact_infos {
+	background-color: rgb(255,255,255);
+	background-color: rgba(255,255,255,0.6);
+	padding-top: 30px;
+	padding-bottom: 15px;
+}
+#contact_infos .row {
+	text-align: center;
+}
+
+
+
+@media (max-width: 991px) {
+    #pelican {
+    	width: 240px;
+    	top: -120px;
+    }
+}
+@media (max-width: 767px) {
+    #contact_form {
+    	text-align: left;
+    	padding-bottom: 45px;
+    }
+    #contact_form form {
+    	padding-left: 0;
+    	padding-right: 0; 
+    }
+    #contact_form textarea {
+    	min-height: 150px;
+    }
+
+    #submitButtonDiv {
+    	height: auto;
+    }
+
+    #contact_infos {
+    	text-align: center;
+    }
+}
