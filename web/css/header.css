@@ -11,7 +11,7 @@
 	z-index: 10;
 }
 #header_images img {
-	width: 100%;
+	max-width: 100%;
 }
 #header_images #header_middle-text {
 	margin-top: 50px;
